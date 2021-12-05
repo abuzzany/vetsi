@@ -3,6 +3,7 @@ GEM
   specs:
     ast (2.4.2)
     daemons (1.4.1)
+    diff-lcs (1.4.4)
     eventmachine (1.2.7)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
@@ -17,6 +18,19 @@ GEM
     rainbow (3.0.0)
     regexp_parser (2.2.0)
     rexml (3.2.5)
+    rspec (3.10.0)
+      rspec-core (~> 3.10.0)
+      rspec-expectations (~> 3.10.0)
+      rspec-mocks (~> 3.10.0)
+    rspec-core (3.10.1)
+      rspec-support (~> 3.10.0)
+    rspec-expectations (3.10.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.10.0)
+    rspec-mocks (3.10.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.10.0)
+    rspec-support (3.10.3)
     rubocop (1.23.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
@@ -47,6 +61,7 @@ PLATFORMS
 
 DEPENDENCIES
   rack-test
+  rspec
   rubocop
   sinatra
   thin
