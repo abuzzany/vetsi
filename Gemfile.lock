@@ -3,11 +3,13 @@ GEM
   specs:
     ast (2.4.2)
     diff-lcs (1.4.4)
+    mustermann (1.1.1)
+      ruby2_keywords (~> 0.0.1)
     parallel (1.21.0)
     parser (3.0.3.1)
       ast (~> 2.4.1)
     rack (2.2.3)
-    rack-app (7.7.0)
+    rack-protection (2.1.0)
       rack
     rainbow (3.0.0)
     regexp_parser (2.2.0)
@@ -37,15 +39,22 @@ GEM
     rubocop-ast (1.14.0)
       parser (>= 3.0.1.1)
     ruby-progressbar (1.11.0)
+    ruby2_keywords (0.0.5)
+    sinatra (2.1.0)
+      mustermann (~> 1.0)
+      rack (~> 2.2)
+      rack-protection (= 2.1.0)
+      tilt (~> 2.0)
+    tilt (2.0.10)
     unicode-display_width (2.1.0)
 
 PLATFORMS
   arm64-darwin-20
 
 DEPENDENCIES
-  rack-app
   rspec
   rubocop
+  sinatra
 
 BUNDLED WITH
    2.2.22
