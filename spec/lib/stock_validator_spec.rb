@@ -8,6 +8,7 @@ RSpec.describe StockValidator do
   include Rack::Test::Methods
 
   it 'validates that a symbol is correct' do
-    described_class.call
+    result = described_class.call(:aapl)
+    expect(result).to be_truthy
   end
 end
