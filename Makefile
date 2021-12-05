@@ -9,3 +9,6 @@ start:
 
 test:
 	bundle exec rspec spec/*
+
+rubocop
+	bundle exec rubocop
