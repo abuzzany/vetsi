@@ -1,5 +1,6 @@
 require 'httparty'
 
+# This class works as a NASDAQ API client
 module NasdaqClient
   class Api
     include HTTParty
