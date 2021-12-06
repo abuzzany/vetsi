@@ -1,9 +1,8 @@
+require 'nasdaq_client/api'
+
 # This class validates a stock symbol in NASDAQ API.
 class StockValidator
   def self.call(stock_symbol)
-    return '' unless stock_symbol
-    return true if stock_symbol == :AAPL
-
-    false
+    NasdaqClient::Api.valid_stock_symbol?(stock_symbol)
   end
 end
