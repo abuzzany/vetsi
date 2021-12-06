@@ -9,17 +9,24 @@ RSpec.describe NasdaqClient::Api do
   describe '.new' do
     context 'for a valid stock symbol' do
       it 'should creates an instance of NasdaqClient::Api' do
-        result = described_class.new(:AAPL)
+        result = described_class.new
         expect(result).to be_an_instance_of(NasdaqClient::Api)
       end
     end
   end
 
-  describe 'is_valid?' do
+  describe '.valid_stock_symbol?' do
     context 'for a valid stock symbol' do
-      it 'should creates an instance of NasdaqClient::Api' do
-        result = described_class.new(:AAPL).is_valid?
+      it 'shuld returns true' do
+        result = described_class.valid_stock_symbol?(:AAPL)
         expect(result).to be_truthy
+      end
+    end
+
+    context 'for a ivalid stock symbol' do
+      it 'shuld returns false' do
+        result = described_class.valid_stock_symbol?(:FAKE)
+        expect(result).to be_falsy
       end
     end
   end
