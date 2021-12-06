@@ -3,18 +3,26 @@ require 'httparty'
 # This class works as a NASDAQ API client
 module NasdaqClient
   class Api
-    include HTTParty
+    def self.valid_stock_symbol?(stock_symbol)
+      query = {
+        "assetclass": 'stocks'
+      }
 
-    base_uri 'https://api.nasdaq.com/api/quote/'
+      headers = {
+        "User-Agent": 'PostmanRuntime/7.28.4',
+        "Accept": '*/*'
 
-    attr_accessor :stock_symbol
+      }
 
-    def initialize(stock_symbol)
-      @stock_symbol = stock_symbol
-    end
+      response = HTTParty.get(
+        "https://api.nasdaq.com/api/quote/#{stock_symbol}/info",
+        headers: headers,
+        query: query
+      )
 
-    def is_valid?
-        false
+      return true if response["status"]["rCode"] == 200
+
+      false
     end
   end
 end
