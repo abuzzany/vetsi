@@ -8,6 +8,8 @@ module NasdaqClient
         "assetclass": 'stocks'
       }
 
+      # This heades is necessry because nasdaq api
+      # blocks request for web scraping
       headers = {
         "User-Agent": 'PostmanRuntime/7.28.4',
         "Accept": '*/*'
