@@ -12,5 +12,9 @@ module NasdaqClient
     def initialize(stock_symbol)
       @stock_symbol = stock_symbol
     end
+
+    def is_valid?
+        false
+    end
   end
 end
