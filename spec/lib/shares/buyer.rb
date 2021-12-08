@@ -16,11 +16,11 @@ RSpec.describe Shares::Buyer do
     end
 
     context 'for a valid stock symbol' do
-        it 'should returns the transaction detail for the share bought' do
-          result = described_class.call(:AAPL)
-          expect(result[:status]).to be_eql('success')
-          expect(result[:code]).to eql(200)
-        end
+      it 'should returns the transaction detail for the share bought' do
+        result = described_class.call(:AAPL)
+        expect(result[:status]).to be_eql('success')
+        expect(result[:code]).to eql(200)
       end
+    end
   end
 end
