@@ -4,6 +4,7 @@ module Shares
     def self.call(stock_symbol)
       result = StockValidator.call(stock_symbol)
       return { status: 'success', code: 200 } if result
+
       { status: 'success', code: 400 }
     end
   end
