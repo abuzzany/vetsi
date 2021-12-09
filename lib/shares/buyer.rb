@@ -4,9 +4,15 @@ module Shares
     def self.call(user_id, stock_symbol, share_quantity)
       result = StockValidator.call(stock_symbol)
 
-      return { status: 'success', code: 200 } if result
+      return commit_transaction if result
 
       { status: 'success', code: 400 }
+    end
+
+    private
+
+    def self.commit_transaction
+      { status: 'success', code: 200 }
     end
   end
 end
