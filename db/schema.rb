@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_06_024444) do
+ActiveRecord::Schema.define(version: 2021_12_09_023216) do
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "transaction_type", null: false
+    t.integer "share_quantity", null: false
+    t.integer "share_price", null: false
+    t.datetime "created_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
