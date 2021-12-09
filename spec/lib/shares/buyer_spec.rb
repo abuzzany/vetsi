@@ -9,7 +9,9 @@ RSpec.describe Shares::Buyer do
   describe '.call' do
     context 'for an invalid stock symbol' do
       it 'should returns a not found error when the symbol doe not exist' do
-        result = described_class.call(:FAKEAPPL)
+        user = User.create(email: 'abuzzany@gmail.com')
+        share_quantity = 5
+        result = described_class.call(user.id, :FAKEAPPL, share_quantity)
         expect(result[:status]).to be_eql('success')
         expect(result[:code]).to eql(400)
       end
@@ -17,7 +19,9 @@ RSpec.describe Shares::Buyer do
 
     context 'for a valid stock symbol' do
       it 'should returns the transaction detail for the share bought' do
-        result = described_class.call(:AAPL)
+        user = User.create(email: 'abuzzany@gmail.com')
+        share_quantity = 5
+        result = described_class.call(user.id, :AAPL, share_quantity)
         expect(result[:status]).to be_eql('success')
         expect(result[:code]).to eql(200)
       end
