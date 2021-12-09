@@ -13,6 +13,8 @@
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+ENV["RACK_ENV"] = "test"
+
 require './app'
 
 RSpec.configure do |config|
