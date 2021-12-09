@@ -28,4 +28,15 @@ RSpec.describe Transaction do
       end
     end
   end
+
+  describe '.valid' do
+    context 'with at least a missing required attribute' do
+      it 'should returns false' do
+        transaction = Transaction.new(
+          user_id: 1
+        )
+        expect(transaction.valid?).to be_falsy
+      end
+    end
+  end
 end
