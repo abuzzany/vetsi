@@ -20,8 +20,7 @@ RSpec.describe Shares::Buyer do
     context 'for a valid stock symbol' do
       it 'should returns the transaction detail for the share bought' do
         user = User.create(email: 'abuzzany@gmail.com')
-        share_quantity = 5
-        result = described_class.call(user.id, :AAPL, share_quantity)
+        result = described_class.call(user.id, :AAPL, 10)
         expect(result[:status]).to be_eql('success')
         expect(result[:code]).to eql(200)
       end
