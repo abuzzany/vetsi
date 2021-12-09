@@ -16,6 +16,16 @@ RSpec.describe Transaction do
         )
         expect(transaction.persisted?).to be_truthy
       end
+
+      it 'should persist a sell transaction' do
+        transaction = Transaction.create(
+          user_id: 1,
+          transaction_type: :sell,
+          share_quantity: 90,
+          share_price: 1150
+        )
+        expect(transaction.persisted?).to be_truthy
+      end
     end
   end
 end
