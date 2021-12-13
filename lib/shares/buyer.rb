@@ -4,7 +4,11 @@ module Shares
     def self.call(user_id, stock_symbol, share_quantity)
       result = StockValidator.call(stock_symbol)
 
-      return commit_transaction(user_id, share_quantity, 10) if result
+      if result
+        last_sale_price = Stocks::Info.new(stock_symbol).last_sale_price
+
+        return commit_transaction(user_id, share_quantity, last_sale_price)
+      end
 
       { status: 'success', code: 400 }
     end
