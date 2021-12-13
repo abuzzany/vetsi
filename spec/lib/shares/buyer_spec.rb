@@ -1,8 +1,3 @@
-ENV['APP_ENV'] = 'test'
-
-require 'rspec'
-require 'rack/test'
-
 RSpec.describe Shares::Buyer do
   include Rack::Test::Methods
 
