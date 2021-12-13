@@ -2,6 +2,10 @@ module Shares
   # The goal of this service object is buy company shares
   class Buyer
     def self.call(user_id, stock_symbol, share_quantity)
+      new.run(user_id, stock_symbol, share_quantity)
+    end
+
+    def run(user_id, stock_symbol, share_quantity)
       result = StockValidator.call(stock_symbol)
 
       if result
@@ -15,7 +19,7 @@ module Shares
 
     private
 
-    def self.commit_transaction(user_id, share_quantity, share_price)
+    def commit_transaction(user_id, share_quantity, share_price)
       transaction = Transaction.create(user_id: user_id,
                                        transaction_type: :buy,
                                        share_quantity: share_quantity,
