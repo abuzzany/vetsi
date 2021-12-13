@@ -17,7 +17,7 @@ module Stocks
     private
 
     def call
-        @result = NasdaqClient::Api.new(stock_symbol).call
+      @result = NasdaqClient::Api.new(stock_symbol).call
     end
   end
 end
