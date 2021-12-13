@@ -12,7 +12,7 @@ RSpec.describe Stocks::Info do
     context 'for a valid stock symbol' do
       it 'should returns the last sale price' do
         stock_info = described_class.new(:AAPL)
-        expect(stock_info.last_sale_price).to be_eql('$179.45')
+        expect(stock_info.last_sale_price).to be_eql(179.45)
       end
     end
   end
