@@ -26,6 +26,16 @@ RSpec.describe Transaction do
         )
         expect(transaction.persisted?).to be_truthy
       end
+
+      it 'returns the loss percentage of a share' do
+        transaction = Transaction.create(
+          user_id: 1,
+          transaction_type: :sell,
+          share_quantity: 90,
+          share_price: 1150
+        )
+        expect(transaction.profit_loss).to be_eql(-974.78)
+      end
     end
   end
 
