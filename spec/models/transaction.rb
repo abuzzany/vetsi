@@ -1,9 +1,3 @@
-ENV['APP_ENV'] = 'test'
-
-require 'rspec'
-require 'rack/test'
-require 'httparty'
-
 RSpec.describe Transaction do
   describe '.create' do
     context 'with all the required attributes' do
