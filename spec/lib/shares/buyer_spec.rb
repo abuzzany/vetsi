@@ -1,6 +1,4 @@
 RSpec.describe Shares::Buyer do
-  include Rack::Test::Methods
-
   describe '.call' do
     context 'for an invalid stock symbol' do
       it 'should returns a not found error when the symbol doe not exist' do
