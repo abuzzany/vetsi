@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2021_12_14_225809) do
   create_table "stocks", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "stock_symbol", null: false
-    t.float "total_shares", null: false
+    t.float "total_shares", default: 0.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
