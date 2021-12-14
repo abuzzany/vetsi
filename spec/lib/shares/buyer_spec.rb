@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Shares::Buyer do
   describe '.call' do
     context 'for an invalid stock symbol' do
