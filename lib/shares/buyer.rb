@@ -5,14 +5,14 @@ module Shares
                   :stock_symbol,
                   :share_quantity
 
+    def self.call(user_id, stock_symbol, share_quantity)
+      new(user_id, stock_symbol, share_quantity).call
+    end
+
     def initialize(user_id, stock_symbol, share_quantity)
       @user_id = user_id
       @stock_symbol = stock_symbol
       @share_quantity = share_quantity
-    end
-
-    def self.call(user_id, stock_symbol, share_quantity)
-      new(user_id, stock_symbol, share_quantity).call
     end
 
     def call
