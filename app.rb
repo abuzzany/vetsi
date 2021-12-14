@@ -2,6 +2,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 
 require_relative 'models/user'
+require_relative 'models/stock'
 require_relative 'models/transaction'
 require_relative 'lib/nasdaq_client/api'
 require_relative 'lib/shares/buyer'
