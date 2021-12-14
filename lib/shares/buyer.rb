@@ -11,7 +11,7 @@ module Shares
       if result
         last_sale_price = Stocks::Info.new(stock_symbol).last_sale_price
 
-        return commit_transaction(user_id, share_quantity, last_sale_price)
+        return commit_transaction(user_id, share_quantity, last_sale_price, stock_symbol)
       end
 
       { status: 'success', code: 400 }
@@ -19,11 +19,13 @@ module Shares
 
     private
 
-    def commit_transaction(user_id, share_quantity, share_price)
+    def commit_transaction(user_id, share_quantity, share_price, stock_symbol)
       transaction = Transaction.create(user_id: user_id,
                                        transaction_type: :buy,
                                        share_quantity: share_quantity,
                                        share_price: share_price_to_cents(share_price))
+
+      calculate_user_stock_value(user_id, stock_symbol, share_quantity)
 
       return { status: 'success', code: 200 } if transaction.persisted?
     end
@@ -32,6 +34,16 @@ module Shares
     # the share_price is saved in cents format.
     def share_price_to_cents(share_price)
       share_price * 100
+    end
+
+    def calculate_user_stock_value(user_id, stock_symbol, share_quantity)
+      user_stock  = Stock.find_or_initialize_by(
+        user_id: user_id,
+        stock_symbol: stock_symbol
+      )
+
+      user_stock.total_shares += share_quantity
+      user_stock.save
     end
   end
 end
