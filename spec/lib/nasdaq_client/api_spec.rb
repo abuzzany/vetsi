@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe NasdaqClient::Api do
   describe '.new' do
     context 'for a valid stock symbol' do
