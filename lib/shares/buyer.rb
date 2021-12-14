@@ -1,17 +1,27 @@
 module Shares
   # The goal of this service object is buy company shares
   class Buyer
-    def self.call(user_id, stock_symbol, share_quantity)
-      new.run(user_id, stock_symbol, share_quantity)
+    attr_accessor :user_id,
+                  :stock_symbol,
+                  :share_quantity
+
+    def initialize(user_id, stock_symbol, share_quantity)
+      @user_id = user_id
+      @stock_symbol = stock_symbol
+      @share_quantity = share_quantity
     end
 
-    def run(user_id, stock_symbol, share_quantity)
+    def self.call(user_id, stock_symbol, share_quantity)
+      new(user_id, stock_symbol, share_quantity).call
+    end
+
+    def call
       result = StockValidator.call(stock_symbol)
 
       if result
         last_sale_price = Stocks::Info.new(stock_symbol).last_sale_price
 
-        return commit_transaction(user_id, share_quantity, last_sale_price, stock_symbol)
+        return commit_transaction(last_sale_price)
       end
 
       { status: 'success', code: 400 }
@@ -19,13 +29,13 @@ module Shares
 
     private
 
-    def commit_transaction(user_id, share_quantity, share_price, stock_symbol)
+    def commit_transaction(share_price)
       transaction = Transaction.create(user_id: user_id,
                                        transaction_type: :buy,
                                        share_quantity: share_quantity,
                                        share_price: share_price_to_cents(share_price))
 
-      calculate_user_stock_value(user_id, stock_symbol, share_quantity)
+      calculate_user_stock_value
 
       return { status: 'success', code: 200 } if transaction.persisted?
     end
@@ -36,7 +46,7 @@ module Shares
       share_price * 100
     end
 
-    def calculate_user_stock_value(user_id, stock_symbol, share_quantity)
+    def calculate_user_stock_value
       user_stock  = Stock.find_or_initialize_by(
         user_id: user_id,
         stock_symbol: stock_symbol
