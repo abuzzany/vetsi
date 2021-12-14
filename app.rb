@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'pry'
 
 require_relative 'models/user'
 require_relative 'models/stock'
