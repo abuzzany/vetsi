@@ -5,7 +5,7 @@ class CreateTransactions < ActiveRecord::Migration[6.1]
       t.integer :transaction_type, null: false
       t.integer :share_quantity, null: false
       t.integer :share_price, null: false
-      t.datetime :created_at, null: false
+      t.timestamps(null: false)
     end
   end
 end
