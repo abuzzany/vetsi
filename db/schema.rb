@@ -25,7 +25,8 @@ ActiveRecord::Schema.define(version: 2021_12_14_225809) do
     t.integer "transaction_type", null: false
     t.string "stock_symbol", null: false
     t.integer "share_quantity", null: false
-    t.integer "share_price", null: false
+    t.float "share_price", null: false
+    t.float "total_amount", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
