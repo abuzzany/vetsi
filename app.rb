@@ -18,6 +18,17 @@ get '/' do
   'Hello world!'
 end
 
-get '/user/:id/wallet' do |id|
+get '/users/:id/wallet' do |id|
   InvestmentWallet.for(id).call.to_json
+end
+
+post '/users/:id/stocks/buy' do |id|
+  request_params = JSON.parse(request.body.read)
+
+  response = Shares::Buyer.call(id,
+                                request_params['stock_symbol'],
+                                request_params['share_quantity'],
+                                :buy)
+
+  response[:transaction].to_json
 end
