@@ -17,26 +17,8 @@ module Stocks
     end
 
     def run
-      total = bought - selled
+      total = Stocks::CalculateStockQuantity.run(user_id, stock_symbol, :buy) -  Stocks::CalculateStockQuantity.run(user_id, stock_symbol, :sell)
       total * Stocks::Info.new(stock_symbol).last_sale_price
-    end
-
-    private
-
-    def bought
-      Transaction.select(:share_quantity).where(
-        user_id: user_id,
-        transaction_type: :buy,
-        stock_symbol: stock_symbol
-      ).sum(:share_quantity)
-    end
-
-    def selled
-      Transaction.select(:share_quantity).where(
-        user_id: user_id,
-        transaction_type: :sell,
-        stock_symbol: stock_symbol
-      ).sum(:share_quantity)
     end
   end
 end
