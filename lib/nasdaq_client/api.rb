@@ -22,7 +22,7 @@ module NasdaqClient
     end
 
     def headers
-      # This heades is necessry because nasdaq api
+      # This heades is necessary because nasdaq api
       # blocks request for web scraping
       {
         "User-Agent": 'PostmanRuntime/7.28.4',
