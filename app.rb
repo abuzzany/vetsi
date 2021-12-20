@@ -12,7 +12,6 @@ require_relative 'lib/nasdaq_client/api'
 require_relative 'lib/shares/buyer'
 require_relative 'lib/shares/calculate_held_quantity'
 require_relative 'lib/stocks/calculate_profit_loss'
-require_relative 'lib/stocks/holder_information'
 require_relative 'lib/stocks/info'
 require_relative 'lib/stocks/validator'
 
