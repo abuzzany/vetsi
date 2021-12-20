@@ -4,6 +4,8 @@ require 'httparty'
 
 # This class works as a NASDAQ API client
 module NasdaqClient
+  # This class works as interface to make request to
+  # NASDAQ API.
   class Api
     attr_reader :stock_symbol
 
@@ -12,18 +14,6 @@ module NasdaqClient
     end
 
     def call
-      query = {
-        "assetclass": 'stocks'
-      }
-
-      # This heades is necessry because nasdaq api
-      # blocks request for web scraping
-      headers = {
-        "User-Agent": 'PostmanRuntime/7.28.4',
-        "Accept": '*/*'
-
-      }
-
       HTTParty.get(
         "https://api.nasdaq.com/api/quote/#{stock_symbol}/info",
         headers: headers,
@@ -31,28 +21,19 @@ module NasdaqClient
       )
     end
 
-    def self.valid_stock_symbol?(stock_symbol)
-      query = {
-        "assetclass": 'stocks'
-      }
-
+    def headers
       # This heades is necessry because nasdaq api
       # blocks request for web scraping
-      headers = {
+      {
         "User-Agent": 'PostmanRuntime/7.28.4',
         "Accept": '*/*'
-
       }
+    end
 
-      response = HTTParty.get(
-        "https://api.nasdaq.com/api/quote/#{stock_symbol}/info",
-        headers: headers,
-        query: query
-      )
-
-      return true if response['status']['rCode'] == 200
-
-      false
+    def query
+      {
+        "assetclass": 'stocks'
+      }
     end
   end
 end
