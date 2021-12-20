@@ -18,7 +18,7 @@ module Shares
     end
 
     def call
-      result = StockValidator.call(stock_symbol)
+      result = Stocks::Validator.call(stock_symbol)
 
       if result
         last_sale_price = Stocks::Info.new(stock_symbol).last_sale_price

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe StockValidator do
+RSpec.describe Stocks::Validator do
   describe '.call' do
     context 'for a valid stock symbol' do
       it 'should returns true when the symbol exists' do

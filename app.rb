@@ -13,7 +13,7 @@ require_relative 'lib/shares/calculate_held_quantity'
 require_relative 'lib/stocks/calculate_profit_loss'
 require_relative 'lib/stocks/holder_information'
 require_relative 'lib/stocks/info'
-require_relative 'lib/stock_validator'
+require_relative 'lib/stocks/validator'
 
 get '/' do
   'Hello world!'
