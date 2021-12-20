@@ -22,7 +22,7 @@ module Shares
     def call
       return commit_transaction if valid_stock_symbol?
 
-      { status: 'success', code: 400 }
+      { status: 'success', code: 400, transaction: nil }
     end
 
     private
@@ -32,10 +32,12 @@ module Shares
 
       transaction = Transaction.create(user_id: user_id,
                                        transaction_type: transaction_type,
+                                       stock_symbol: stock_symbol,
                                        share_quantity: share_quantity,
-                                       share_price: last_sale_price)
+                                       share_price: last_sale_price,
+                                       total_amount: share_quantity * last_sale_price)
 
-      return { status: 'success', code: 200 } if transaction.persisted?
+      return { status: 'success', code: 200, transaction: transaction } if transaction.persisted?
     end
 
     def valid_stock_symbol?
