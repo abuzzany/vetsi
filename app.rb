@@ -5,7 +5,6 @@ require 'sinatra/activerecord'
 require 'pry'
 
 require_relative 'models/user'
-require_relative 'models/stock'
 require_relative 'models/transaction'
 require_relative 'lib/investment_wallet'
 require_relative 'lib/nasdaq_client/api'

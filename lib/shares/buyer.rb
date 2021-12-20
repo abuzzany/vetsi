@@ -35,27 +35,9 @@ module Shares
       transaction = Transaction.create(user_id: user_id,
                                        transaction_type: :buy,
                                        share_quantity: share_quantity,
-                                       share_price: share_price_to_cents(share_price))
-
-      calculate_user_stock_value
+                                       share_price: share_price)
 
       return { status: 'success', code: 200 } if transaction.persisted?
-    end
-
-    # To avoid problemes with float point operations,
-    # the share_price is saved in cents format.
-    def share_price_to_cents(share_price)
-      share_price * 100
-    end
-
-    def calculate_user_stock_value
-      user_stock  = Stock.find_or_initialize_by(
-        user_id: user_id,
-        stock_symbol: stock_symbol
-      )
-
-      user_stock.total_shares += share_quantity
-      user_stock.save
     end
   end
 end
