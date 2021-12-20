@@ -17,3 +17,7 @@ require_relative 'lib/stocks/validator'
 get '/' do
   'Hello world!'
 end
+
+get '/user/:id/wallet' do |id|
+  InvestmentWallet.for(id).call.to_json
+end
