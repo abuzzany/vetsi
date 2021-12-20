@@ -24,10 +24,9 @@ class InvestmentWallet
   def stocks
     Transaction.select(:stock_symbol).where(user_id: user_id).distinct.map do |transaction|
       {
-        transaction.stock_symbol => {
-          profit_loss: Stocks::CalculateProfitLoss.run(user_id, transaction.stock_symbol),
-          held_shares: calculate_held_shares(user_id, transaction.stock_symbol)
-        }
+        stock_symbol: transaction.stock_symbol,
+        profit_loss: Stocks::CalculateProfitLoss.run(user_id, transaction.stock_symbol),
+        held_shares: calculate_held_shares(user_id, transaction.stock_symbol)
       }
     end
   end
