@@ -14,7 +14,7 @@ module Stocks
         {
           transaction.stock_symbol => {
             profit_loss: Stocks::CalculateProfitLoss.run(user.id, transaction.stock_symbol),
-            held_shares: calculate_held_shares(user, id, stock_symbol)
+            held_shares: calculate_held_shares(user.id, transaction.stock_symbol)
           }
         }
       end

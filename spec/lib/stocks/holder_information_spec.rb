@@ -1,37 +1,15 @@
 # frozen_string_literal: true
+require './spec/fixtures/transactions/transactions_mock'
 
 RSpec.describe Stocks::HolderInformation do
+  include TransactionsMock
+
   describe '.stocks' do
     context 'for a existeng user' do
       it 'should returns the list of bought stocks' do
         user = User.create(email: 'abuzzany@gmail.com')
-        Transaction.create(user_id: user.id,
-                           transaction_type: :buy,
-                           stock_symbol: :AAPL,
-                           share_quantity: 10,
-                           share_price: 150_000,
-                           total_amount: 10 * 150_000)
 
-        Transaction.create(user_id: user.id,
-                           transaction_type: :buy,
-                           stock_symbol: :AAPL,
-                           share_quantity: 4,
-                           share_price: 50_000,
-                           total_amount: 4 * 50_000)
-
-        Transaction.create(user_id: user.id,
-                           transaction_type: :sell,
-                           stock_symbol: :AAPL,
-                           share_quantity: 4,
-                           share_price: 10_000,
-                           total_amount: 4 * 10_000)
-
-        Transaction.create(user_id: user.id,
-                           transaction_type: :buy,
-                           stock_symbol: :TSLA,
-                           share_quantity: 4,
-                           share_price: 100,
-                           total_amount: 4 * 10_00)
+        create_transactions(user.id)
 
         result = described_class.new(user.id).stocks
 
