@@ -10,14 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_09_023216) do
+ActiveRecord::Schema.define(version: 2021_12_14_225809) do
+
+  create_table "stocks", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "stock_symbol", null: false
+    t.float "total_shares", default: 0.0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "transactions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "transaction_type", null: false
+    t.string "stock_symbol", null: false
     t.integer "share_quantity", null: false
-    t.integer "share_price", null: false
-    t.datetime "created_at", null: false
+    t.float "share_price", null: false
+    t.float "total_amount", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
