@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require './spec/fixtures/transactions/transactions_mock'
 
 RSpec.describe Stocks::HolderInformation do
