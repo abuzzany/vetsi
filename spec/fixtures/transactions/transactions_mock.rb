@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TransactionsMock
   def create_transactions(user_id)
     Transaction.create(user_id: user_id,

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Shares
   # The goal of this service object is buy company shares
   class Buyer

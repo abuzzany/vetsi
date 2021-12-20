@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'pry'
@@ -12,8 +14,6 @@ require_relative 'lib/stocks/calculate_stock_quantity'
 require_relative 'lib/stocks/holder_information'
 require_relative 'lib/stocks/info'
 require_relative 'lib/stock_validator'
-
-# set :database, { adapter: 'sqlite3', database: 'foo.sqlite3' }
 
 get '/' do
   'Hello world!'

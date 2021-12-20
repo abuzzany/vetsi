@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Stocks::Info do
   describe '.new' do
     context 'for an invalid stock symbol' do

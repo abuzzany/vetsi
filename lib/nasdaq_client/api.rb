@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'httparty'
 
 # This class works as a NASDAQ API client

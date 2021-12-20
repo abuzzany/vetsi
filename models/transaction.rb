@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Transaction < ActiveRecord::Base
   validates_presence_of :user_id,
                         :transaction_type,
