@@ -4,7 +4,7 @@ require 'httparty'
 
 # This class works as a NASDAQ API client
 module NasdaqClient
-  # This class works as interface to make request to
+  # This class works as an interface to make request to
   # NASDAQ API.
   class Api
     attr_reader :stock_symbol
