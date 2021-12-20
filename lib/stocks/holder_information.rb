@@ -11,12 +11,20 @@ module Stocks
 
     def stocks
       Transaction.select(:stock_symbol).where(user_id: user.id).distinct.map do |transaction|
-        { transaction.stock_symbol => { 
-                                        profit_loss: Stocks::CalculateProfitLoss.run(user.id, transaction.stock_symbol),
-                                        held_shares: Stocks::CalculateStockQuantity.run(user.id, transaction.stock_symbol, :buy) -  Stocks::CalculateStockQuantity.run(user.id, transaction.stock_symbol, :sell) 
-                                      } 
+        {
+          transaction.stock_symbol => {
+            profit_loss: Stocks::CalculateProfitLoss.run(user.id, transaction.stock_symbol),
+            held_shares: calculate_held_shares(user, id, stock_symbol)
+          }
         }
       end
+    end
+
+    private
+
+    def calculate_held_shares(user_id, stock_symbol)
+      Stocks::CalculateStockQuantity.run(user_id, stock_symbol, :buy) -
+        Stocks::CalculateStockQuantity.run(user_id, stock_symbol, :sell)
     end
   end
 end
