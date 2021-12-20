@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-module Stocks
+module Shares
   # This class calculates the quantity for given
   # stock symbol.
-  class CalculateStockQuantity
+  class CalculateHeldQuantity
     attr_accessor :user_id,
                   :stock_symbol,
                   :transaction_type

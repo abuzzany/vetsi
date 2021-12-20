@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Stocks
   # This class returns the stock information for a given time.
   class Info

@@ -16,20 +16,4 @@ RSpec.describe NasdaqClient::Api do
       end
     end
   end
-
-  describe '.valid_stock_symbol?' do
-    context 'for a valid stock symbol' do
-      it 'shuld returns true' do
-        result = described_class.valid_stock_symbol?(:AAPL)
-        expect(result).to be_truthy
-      end
-    end
-
-    context 'for a ivalid stock symbol' do
-      it 'shuld returns false' do
-        result = described_class.valid_stock_symbol?(:FAKE)
-        expect(result).to be_falsy
-      end
-    end
-  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Transaction do
   describe '.create' do
     context 'with all the required attributes' do

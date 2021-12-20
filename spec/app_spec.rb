@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ENV['APP_ENV'] = 'test'
 
 require './app'  # <-- your sinatra app
@@ -11,7 +13,7 @@ RSpec.describe 'The HelloWorld App' do
     Sinatra::Application
   end
 
-  it "says hello" do
+  it 'says hello' do
     get '/'
     expect(last_response).to be_ok
     expect(last_response.body).to eq('Hello World')
