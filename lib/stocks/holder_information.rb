@@ -23,8 +23,8 @@ module Stocks
     private
 
     def calculate_held_shares(user_id, stock_symbol)
-      Stocks::CalculateStockQuantity.run(user_id, stock_symbol, :buy) -
-        Stocks::CalculateStockQuantity.run(user_id, stock_symbol, :sell)
+      Shares::CalculateHeldQuantity.run(user_id, stock_symbol, :buy) -
+        Shares::CalculateHeldQuantity.run(user_id, stock_symbol, :sell)
     end
   end
 end

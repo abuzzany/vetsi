@@ -17,9 +17,9 @@ module Stocks
     end
 
     def run
-      total = Stocks::CalculateStockQuantity.run(user_id, stock_symbol,
-                                                 :buy) - Stocks::CalculateStockQuantity.run(user_id, stock_symbol,
-                                                                                            :sell)
+      total = Shares::CalculateHeldQuantity.run(user_id, stock_symbol,
+                                                :buy) - Shares::CalculateHeldQuantity.run(user_id, stock_symbol,
+                                                                                          :sell)
       total * Stocks::Info.new(stock_symbol).last_sale_price
     end
   end

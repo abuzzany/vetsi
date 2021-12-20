@@ -2,7 +2,7 @@
 
 require './spec/fixtures/transactions/transactions_mock'
 
-RSpec.describe Stocks::CalculateStockQuantity do
+RSpec.describe Shares::CalculateHeldQuantity do
   include TransactionsMock
 
   describe '.run' do
