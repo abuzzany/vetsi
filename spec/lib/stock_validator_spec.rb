@@ -1,12 +1,6 @@
-ENV['APP_ENV'] = 'test'
-
-require './lib/stock_validator'  # <-- your sinatra app
-require 'rspec'
-require 'rack/test'
+# frozen_string_literal: true
 
 RSpec.describe StockValidator do
-  include Rack::Test::Methods
-
   describe '.call' do
     context 'for a valid stock symbol' do
       it 'should returns true when the symbol exists' do
