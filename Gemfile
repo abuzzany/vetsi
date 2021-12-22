@@ -8,6 +8,7 @@ gem 'rack-test'
 gem 'rubocop'
 gem 'rspec'
 gem 'sinatra'
+gem 'sinatra-namespace'
 gem "sinatra-activerecord"
 gem "sqlite3"
 gem "rake"
