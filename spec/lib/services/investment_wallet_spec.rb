@@ -6,8 +6,8 @@ RSpec.describe InvestmentWallet do
   include TransactionsMock
 
   describe '.call' do
-    context 'for a existeng user' do
-      it 'should returns the list of bought stocks' do
+    context 'for an existing user' do
+      it 'returns its investment wallet' do
         user = User.create(email: 'abuzzany@gmail.com')
 
         create_transactions(user.id)
