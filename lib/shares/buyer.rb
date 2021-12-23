@@ -22,7 +22,7 @@ module Shares
     def call
       return commit_transaction if valid_stock_symbol?
 
-      { status: 'success', code: 400, transaction: nil }
+      { status: 'success', code: 400, message: "stock_symbol '#{stock_symbol}' not found", transaction: nil }
     end
 
     private
