@@ -3,13 +3,11 @@
 module NasdaqClient
   # This class returns the information for a given
   # stock symbol.
-  class Quotes
-    attr_accessor :stock_symbol,
-                  :response
-
+  class Quotes < NasdaqClient::Api
     def initialize(stock_symbol)
+      super(stock_symbol)
       @stock_symbol = stock_symbol
-      @response = NasdaqClient::Api.new.get("quote/#{stock_symbol}/info")
+      @response = get("quote/#{stock_symbol}/info")
     end
 
     def symbol
