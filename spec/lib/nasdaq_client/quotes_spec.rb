@@ -9,10 +9,10 @@ RSpec.describe NasdaqClient::Quotes do
       end
 
       it 'returns the stock information for a given symbol' do
-        result = described_class.new(:AAPL).info
-        expect(result['status']['rCode']).to be_eql(200)
-        expect(result['data']['symbol']).to be_eql('AAPL')
-        expect(result['data']['companyName']).to be_eql('Apple Inc. Common Stock')
+        result = described_class.new(:AAPL)
+        expect(result.symbol).to be_eql('AAPL')
+        expect(result.company_name).to be_eql('Apple Inc. Common Stock')
+        expect(result.last_sale_price).to be_eql('$175.915')
       end
     end
   end
