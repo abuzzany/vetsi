@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Stocks
-  # This class validates a stock symbol in NASDAQ API.
+  # This service validates a stock symbol in NASDAQ API.
   class Validator
     def self.call(stock_symbol)
       NasdaqClient::Quotes.new(stock_symbol)
