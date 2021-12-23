@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module NasdaqClient
-  # This class returns the information for a given
+  # This class returns the stock information for a given
   # stock symbol.
   class Quotes
     def initialize(stock_symbol)
