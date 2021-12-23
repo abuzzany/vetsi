@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# This service rerurnts the investment walltet
-# for a given user.
+# This service returns the investment wallet for a given
+# user.
 class InvestmentWallet
   attr_accessor :user_id
 
