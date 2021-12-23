@@ -19,14 +19,14 @@ module Stocks
     private
 
     def call
-      @result = NasdaqClient::Quotes.new(stock_symbol).info
+      @result = NasdaqClient::Quotes.new(stock_symbol)
     end
 
     # The format of lastSalePrice attribute comes from
     # NASDAQ API and contains the symbol '$', this method
     # Removes and parse the attribute.
     def parse_last_sale_price
-      price = result['data']['primaryData']['lastSalePrice']
+      price = result.last_sale_price
       price.delete!('$')
       price.to_f
     end
