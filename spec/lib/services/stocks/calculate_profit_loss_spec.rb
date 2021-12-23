@@ -13,9 +13,15 @@ RSpec.describe Stocks::CalculateProfitLoss do
         allow(HTTParty).to receive(:get).and_return(valid_stock_symbol_response)
       end
 
-      it 'should calculates the profit or loss amount' do
+      it 'calculates the profit or loss percentage' do
         user = User.create(email: 'abuzzany@gmail.com')
 
+        # AAPL buy, 10 * $120 = 1,200 shares
+        # AAPL buy, 4 * $122 = 488 shares
+        # AAPL sell, 4 * $120 = 1,200 shares
+        # AAPL = 10 shares
+        # TSLA buy, 5 * $200 = 1,000 shares
+        # Mocked last_sales price $150
         create_transactions(user.id)
 
         result = described_class.run(user.id, :AAPL)

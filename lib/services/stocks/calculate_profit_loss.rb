@@ -17,8 +17,8 @@ module Stocks
     end
 
     def run
-      total = bought_shares - selled_shares
-      total * NasdaqClient::Quotes.new(stock_symbol).last_sale_price
+      total_shares = bought_shares - selled_shares
+      total_shares * NasdaqClient::Quotes.new(stock_symbol).last_sale_price
     end
 
     private
