@@ -9,9 +9,9 @@ RSpec.describe Shares::Buyer do
         share_quantity = 5
 
         result = described_class.call(user.id, :FAKEAPPL, share_quantity, :buy)
-        expect(result[:status]).to be_eql('success')
+
+        expect(result[:success?]).to be_falsy
         expect(result[:code]).to eql(400)
-        expect(result[:transaction]).to be_nil
       end
     end
 
@@ -22,7 +22,7 @@ RSpec.describe Shares::Buyer do
         share_quantity = 5
 
         result = described_class.call(user.id, :AAPL, share_quantity, :buy)
-                
+
         expect(result[:success?]).to be_truthy
         expect(result[:payload].user_id).to be_eql(user.id)
         expect(result[:payload].transaction_type).to be_eql('buy')
