@@ -8,7 +8,10 @@ module NasdaqApiStubs
       },
       'data': {
         'symbol': 'AAPL',
-        'companyName': 'Apple Inc. Common Stock'
+        'companyName': 'Apple Inc. Common Stock',
+        'primaryData': {
+          'lastSalePrice': '$150.00'
+        }
       }
     }.as_json
   end
