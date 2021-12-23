@@ -14,10 +14,16 @@ class InvestmentWallet
   end
 
   def call
-    {
+    result = run_checks
+
+    return result unless result.success?
+
+    response = {
       user_id: user_id,
       stocks: stocks
     }
+
+    OpenStruct.new(success?: true, payload: response)
   end
 
   private
@@ -35,5 +41,12 @@ class InvestmentWallet
   def calculate_held_shares(user_id, stock_symbol)
     Shares::CalculateHeldQuantity.run(user_id, stock_symbol, :buy) -
       Shares::CalculateHeldQuantity.run(user_id, stock_symbol, :sell)
+  end
+
+  def run_checks
+    return OpenStruct.new(success?: false, message: "user_id can't be nil") unless user_id
+    return OpenStruct.new(success?: false, message: "User doesn't exist") unless User.exists?(user_id)
+
+    OpenStruct.new(success?: true)
   end
 end
