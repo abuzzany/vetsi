@@ -37,7 +37,7 @@ module Shares
                                        share_price: last_sale_price,
                                        total_amount: share_quantity * last_sale_price)
 
-      return { status: 'success', code: 200, transaction: transaction } if transaction.persisted?
+      OpenStruct.new({ success?: true, payload: transaction }) if transaction.persisted?
     end
 
     def valid_stock_symbol?
