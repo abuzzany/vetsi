@@ -20,6 +20,9 @@ module Shares
     end
 
     def call
+      result = run_checks
+
+      return result unless result.success?
       return commit_transaction if valid_stock_symbol?
 
       OpenStruct.new(success?: false, code: 400, message: "stock_symbol '#{stock_symbol}' not found")
@@ -42,6 +45,15 @@ module Shares
 
     def valid_stock_symbol?
       Stocks::Validator.call(stock_symbol)
+    end
+
+    def run_checks
+      return OpenStruct.new(success?: false, message: "user_id can't be nil") unless user_id
+      return OpenStruct.new(success?: false, message: "stock_symbol can't be nil") unless stock_symbol
+      return OpenStruct.new(success?: false, message: "share_quantity can't be nil") unless share_quantity
+      return OpenStruct.new(success?: false, message: "transaction_type can't be nil") unless transaction_type
+
+      OpenStruct.new(success?: true)
     end
   end
 end
