@@ -5,15 +5,11 @@ module NasdaqClient
   # stock symbol.
   class Quotes
     attr_accessor :stock_symbol,
-                  :api
+                  :response
 
     def initialize(stock_symbol)
       @stock_symbol = stock_symbol
-      @api = NasdaqClient::Api.new(stock_symbol).call
-    end
-
-    def info
-      api.call
+      @response = NasdaqClient::Api.new.get("quote/#{stock_symbol}/info")
     end
 
     def symbol
@@ -31,7 +27,7 @@ module NasdaqClient
     private
 
     def response_data
-      api['data']
+      response['data']
     end
   end
 end

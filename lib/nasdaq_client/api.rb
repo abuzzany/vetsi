@@ -7,18 +7,12 @@ module NasdaqClient
   # This class works as an interface to make request to
   # NASDAQ API.
   class Api
-    attr_reader :stock_symbol
+    BASE_URL = 'https://api.nasdaq.com/api'
 
-    def initialize(stock_symbol)
-      @stock_symbol = stock_symbol
-    end
+    attr_accessor :stock_symbol
 
-    def call
-      HTTParty.get(
-        "https://api.nasdaq.com/api/quote/#{stock_symbol}/info",
-        headers: headers,
-        query: query
-      )
+    def get(path)
+      HTTParty.get("#{BASE_URL}/#{path}", headers: headers, query: query)
     end
 
     def headers
