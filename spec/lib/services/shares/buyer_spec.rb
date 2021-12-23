@@ -29,6 +29,18 @@ RSpec.describe Shares::Buyer do
       end
     end
 
+    context 'without user_id param' do
+      it 'returns an error message' do
+        user_id = nil
+        share_quantity = 5
+
+        result = described_class.call(user_id, :AAPL, share_quantity, :buy)
+
+        expect(result.success?).to be_falsy
+        expect(result.message).to be_eql("user_id can't be nil")
+      end
+    end
+
     context 'for a valid stock symbol' do
       it 'returns the transaction detail for the bought share' do
         user = User.create(email: 'abuzzany@gmail.com')
