@@ -9,12 +9,7 @@ module NasdaqClient
   class Api
     BASE_URL = 'https://api.nasdaq.com/api'
 
-    attr_accessor :stock_symbol,
-                  :response
-
-    def initialize(stock_symbol)
-      @stock_symbol = stock_symbol
-    end
+    attr_accessor :response
 
     def get(path)
       HTTParty.get("#{BASE_URL}/#{path}", headers: headers, query: query)

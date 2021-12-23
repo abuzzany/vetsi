@@ -5,8 +5,7 @@ module NasdaqClient
   # stock symbol.
   class Quotes < NasdaqClient::Api
     def initialize(stock_symbol)
-      super(stock_symbol)
-      @stock_symbol = stock_symbol
+      super
       @response = get("quote/#{stock_symbol}/info")
     end
 
