@@ -2,9 +2,8 @@
 
 require 'httparty'
 
-# This class works as a NASDAQ API client
 module NasdaqClient
-  # This class works as an interface to make request to
+  # This class uses HTTParty gem in order to make request to
   # NASDAQ API.
   class Api
     BASE_URL = 'https://api.nasdaq.com/api'
