@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Shares
-  # This class calculates the quantity for given
-  # stock symbol.
+  # This sevice calculates the quantity of held shares grouped
+  # by stock for a given user.
   class CalculateHeldQuantity
     attr_accessor :user_id,
                   :stock_symbol,
