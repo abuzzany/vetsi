@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'sinatra'
+require 'sinatra/namespace'
 require 'sinatra/activerecord'
 require 'pry'
 
@@ -14,6 +15,27 @@ require_relative 'lib/stocks/calculate_profit_loss'
 require_relative 'lib/stocks/info'
 require_relative 'lib/stocks/validator'
 
-get '/' do
-  'Hello world!'
+namespace '/api/v1' do
+  before do
+    content_type 'application/json'
+  end
+
+  get '/users/:id/wallet' do |id|
+    InvestmentWallet.for(id).call.to_json
+  end
+
+  post '/users/:id/stocks/buy' do |id|
+    response = Shares::Buyer.call(id,
+                                  request_params['stock_symbol'],
+                                  request_params['share_quantity'],
+                                  :buy)
+
+    return halt 400, { message: response[:message] }.to_json if response[:code] == 400
+
+    response[:transaction].to_json if response[:status] == 'success' && response[:status] == 200
+  end
+
+  def request_params
+    @request_params ||= JSON.parse(request.body.read)
+  end
 end
