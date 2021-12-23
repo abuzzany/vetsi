@@ -26,6 +26,10 @@ RSpec.describe NasdaqClient::Api do
     end
 
     context 'for a invalid stock symbol' do
+      before do
+        allow(HTTParty).to receive(:get).and_return(invalid_stock_symbol_response)
+      end
+
       it 'returns error code 400' do
         response = described_class.new.get('quote/FAKEAAPL/info')
         expect(response['status']['rCode']).to be_eql(400)

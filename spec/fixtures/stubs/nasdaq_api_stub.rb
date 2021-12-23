@@ -15,4 +15,12 @@ module NasdaqApiStubs
       }
     }.as_json
   end
+
+  def invalid_stock_symbol_response
+    {
+      'status': {
+        'rCode': 400
+      }
+    }.as_json
+  end
 end
