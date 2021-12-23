@@ -4,9 +4,10 @@ module NasdaqClient
   # This class returns the information for a given
   # stock symbol.
   class Quotes
-
     def initialize(stock_symbol)
       @response = NasdaqClient::Api.new.get("quote/#{stock_symbol}/info")
+
+      raise NasdaqClient::QuoteException if response['status']['rCode'] == 400
     end
 
     def symbol
