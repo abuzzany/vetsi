@@ -23,6 +23,10 @@ RSpec.describe NasdaqClient::Quotes do
     end
 
     context 'for an invalid stock symbol' do
+      before(:each) do
+        allow(HTTParty).to receive(:get).and_return(invalid_stock_symbol_response)
+      end
+
       it 'raises a NasdaqClient::QuoteException exception' do
         expect { described_class.new(:FAKEAAPL) }.to raise_error(NasdaqClient::QuoteException)
       end
