@@ -30,7 +30,7 @@ module Shares
     private
 
     def commit_transaction
-      last_sale_price = Stocks::Info.new(stock_symbol).last_sale_price
+      last_sale_price = NasdaqClient::Quotes.new(stock_symbol).last_sale_price
 
       transaction = Transaction.create(user_id: user_id,
                                        transaction_type: transaction_type,

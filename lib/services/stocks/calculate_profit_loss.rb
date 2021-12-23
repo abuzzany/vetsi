@@ -20,7 +20,7 @@ module Stocks
       total = Shares::CalculateHeldQuantity.run(user_id, stock_symbol,
                                                 :buy) - Shares::CalculateHeldQuantity.run(user_id, stock_symbol,
                                                                                           :sell)
-      total * Stocks::Info.new(stock_symbol).last_sale_price
+      total * NasdaqClient::Quotes.new(stock_symbol).last_sale_price
     end
   end
 end

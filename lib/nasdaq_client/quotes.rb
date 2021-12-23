@@ -19,7 +19,9 @@ module NasdaqClient
     end
 
     def last_sale_price
-      response_data['primaryData']['lastSalePrice']
+      price = response_data['primaryData']['lastSalePrice']
+      price.delete!('$')
+      price.to_f
     end
 
     private

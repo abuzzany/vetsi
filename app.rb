@@ -14,7 +14,6 @@ require_relative 'lib/nasdaq_client/quote_exception'
 require_relative 'lib/services/shares/trader'
 require_relative 'lib/services/shares/calculate_held_quantity'
 require_relative 'lib/services/stocks/calculate_profit_loss'
-require_relative 'lib/services/stocks/info'
 require_relative 'lib/services/stocks/validator'
 
 namespace '/api/v1' do
