@@ -7,7 +7,7 @@ RSpec.describe Shares::CalculateHeldQuantity do
 
   describe '.run' do
     context 'for a valid stock symbol' do
-      it 'should returns tha calculated amount of holding shares' do
+      it 'returns the quantity of held share' do
         user = User.create(email: 'abuzzany@gmail.com')
 
         create_transactions(user.id)
