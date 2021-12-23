@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 module Shares
-  # The goal of this service object is buy company shares
+  # This service works to buy o sell shares for a given user
+  # and stock symbol.
   class Trader
     attr_accessor :user_id,
                   :stock_symbol,
