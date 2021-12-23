@@ -22,7 +22,7 @@ module Shares
     def call
       return commit_transaction if valid_stock_symbol?
 
-      OpenStruct.new({ success?: false, code: 400, message: "stock_symbol '#{stock_symbol}' not found" })
+      OpenStruct.new(success?: false, code: 400, message: "stock_symbol '#{stock_symbol}' not found")
     end
 
     private
@@ -37,7 +37,7 @@ module Shares
                                        share_price: last_sale_price,
                                        total_amount: share_quantity * last_sale_price)
 
-      OpenStruct.new({ success?: true, payload: transaction }) if transaction.persisted?
+      OpenStruct.new(success?: true, payload: transaction) if transaction.persisted?
     end
 
     def valid_stock_symbol?

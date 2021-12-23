@@ -10,8 +10,8 @@ RSpec.describe Shares::Buyer do
 
         result = described_class.call(user.id, :FAKEAPPL, share_quantity, :buy)
 
-        expect(result[:success?]).to be_falsy
-        expect(result[:code]).to eql(400)
+        expect(result.success?).to be_falsy
+        expect(result.code).to eql(400)
       end
     end
 
@@ -23,13 +23,13 @@ RSpec.describe Shares::Buyer do
 
         result = described_class.call(user.id, :AAPL, share_quantity, :buy)
 
-        expect(result[:success?]).to be_truthy
-        expect(result[:payload].user_id).to be_eql(user.id)
-        expect(result[:payload].transaction_type).to be_eql('buy')
-        expect(result[:payload].stock_symbol).to be_eql('AAPL')
-        expect(result[:payload].share_quantity).to be_eql(5)
-        expect(result[:payload].share_price).to be_eql(175.81)
-        expect(result[:payload].total_amount).to be_eql(879.05)
+        expect(result.success?).to be_truthy
+        expect(result.payload.user_id).to be_eql(user.id)
+        expect(result.payload.transaction_type).to be_eql('buy')
+        expect(result.payload.stock_symbol).to be_eql('AAPL')
+        expect(result.payload.share_quantity).to be_eql(5)
+        expect(result.payload.share_price).to be_eql(175.64)
+        expect(result.payload.total_amount).to be_eql(878.1999999999999)
       end
     end
   end
