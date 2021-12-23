@@ -19,7 +19,7 @@ module Stocks
     private
 
     def call
-      @result = NasdaqClient::Api.new(stock_symbol).call
+      @result = NasdaqClient::Quotes.new(stock_symbol).info
     end
 
     # The format of lastSalePrice attribute comes from
