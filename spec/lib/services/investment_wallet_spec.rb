@@ -14,6 +14,7 @@ RSpec.describe InvestmentWallet do
 
         result = described_class.for(user.id).call
 
+        expect(result[:user_id]).to be_eql(user.id)
         expect(result[:stocks].count).to be_eql(2)
         expect(result[:stocks][0][:stock_symbol]).to be_eql('AAPL')
         expect(result[:stocks][0][:profit_loss]).to be_eql(1711.3999999999999)

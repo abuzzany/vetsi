@@ -15,6 +15,7 @@ class InvestmentWallet
 
   def call
     {
+      user_id: user_id,
       stocks: stocks
     }
   end
