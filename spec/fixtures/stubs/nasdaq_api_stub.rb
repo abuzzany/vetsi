@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozen_string_literal: false
 
 module NasdaqApiStubs
   def valid_stock_symbol_response
