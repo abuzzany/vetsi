@@ -48,6 +48,7 @@ module Shares
 
     def run_checks
       return OpenStruct.new(success?: false, message: "user_id can't be nil") unless user_id
+      return OpenStruct.new(success?: false, message: "User doesn't exist") unless User.exists?(user_id)
       return OpenStruct.new(success?: false, message: "stock_symbol can't be nil") unless stock_symbol
       return OpenStruct.new(success?: false, message: "share_quantity can't be nil") unless share_quantity
       return OpenStruct.new(success?: false, message: "transaction_type can't be nil") unless transaction_type

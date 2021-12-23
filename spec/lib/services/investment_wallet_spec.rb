@@ -27,7 +27,7 @@ RSpec.describe InvestmentWallet do
     end
 
     context 'for an inexistent user' do
-      it 'returns a message error' do
+      it 'returns an message error' do
         user = User.create(email: 'abuzzany@gmail.com')
         user.delete
 
@@ -39,7 +39,7 @@ RSpec.describe InvestmentWallet do
     end
 
     context 'without user_id param' do
-      it 'returns a message error' do
+      it 'returns an message error' do
         user_id = nil
 
         result = described_class.for(user_id).call
