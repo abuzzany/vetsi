@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Stocks
-  # This class calculates the profit or loss for a set of
-  # stocks.
+  # This service calculates the percentage of profit or loss of
+  # a stock for a given user.
   class CalculateProfitLoss
     attr_accessor :user_id,
                   :stock_symbol
@@ -17,10 +17,18 @@ module Stocks
     end
 
     def run
-      total = Shares::CalculateHeldQuantity.run(user_id, stock_symbol,
-                                                :buy) - Shares::CalculateHeldQuantity.run(user_id, stock_symbol,
-                                                                                          :sell)
+      total = bought_shares - selled_shares
       total * NasdaqClient::Quotes.new(stock_symbol).last_sale_price
+    end
+
+    private
+
+    def bought_shares
+      Shares::CalculateHeldQuantity.run(user_id, stock_symbol, :buy)
+    end
+
+    def selled_shares
+      Shares::CalculateHeldQuantity.run(user_id, stock_symbol, :sell)
     end
   end
 end
