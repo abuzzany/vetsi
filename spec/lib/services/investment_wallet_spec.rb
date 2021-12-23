@@ -32,7 +32,7 @@ RSpec.describe InvestmentWallet do
         user.delete
 
         result = described_class.for(user.id).call
-        
+
         expect(result.success?).to be_falsy
         expect(result.message).to be_eql("User doesn't exist")
       end
@@ -43,7 +43,7 @@ RSpec.describe InvestmentWallet do
         user_id = nil
 
         result = described_class.for(user_id).call
-        
+
         expect(result.success?).to be_falsy
         expect(result.message).to be_eql("user_id can't be nil")
       end

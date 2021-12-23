@@ -9,7 +9,7 @@ require_relative 'models/user'
 require_relative 'models/transaction'
 require_relative 'lib/services/investment_wallet'
 require_relative 'lib/nasdaq_client/api'
-require_relative 'lib/services/shares/buyer'
+require_relative 'lib/services/shares/trader'
 require_relative 'lib/services/shares/calculate_held_quantity'
 require_relative 'lib/services/stocks/calculate_profit_loss'
 require_relative 'lib/services/stocks/info'
@@ -25,7 +25,7 @@ namespace '/api/v1' do
   end
 
   post '/users/:id/stocks/buy' do |id|
-    response = Shares::Buyer.call(id,
+    response = Shares::Trader.call(id,
                                   request_params['stock_symbol'],
                                   request_params['share_quantity'],
                                   :buy)

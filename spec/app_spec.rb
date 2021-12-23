@@ -3,7 +3,7 @@
 require 'rack/test'
 require './spec/fixtures/transactions/transactions_mock'
 
-RSpec.describe 'The HelloWorld App' do
+RSpec.describe 'App' do
   include Rack::Test::Methods
   include TransactionsMock
 
@@ -42,14 +42,14 @@ RSpec.describe 'The HelloWorld App' do
         user = User.create(email: 'abuzzany@gmail.com')
 
         params = {
-            stock_symbol: 'AAPL',
-            share_quantity: 10
+          stock_symbol: 'AAPL',
+          share_quantity: 10
         }
-  
+
         post "api/v1/users/#{user.id}/stocks/buy", params.to_json
-        
+
         response = JSON.parse(last_response.body)
-        
+
         expect(last_response).to be_ok
         expect(response['user_id']).to be_eql(user.id)
         expect(response['transaction_type']).to be_eql('buy')
@@ -59,5 +59,4 @@ RSpec.describe 'The HelloWorld App' do
       end
     end
   end
-
 end

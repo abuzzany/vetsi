@@ -2,7 +2,7 @@
 
 module Shares
   # The goal of this service object is buy company shares
-  class Buyer
+  class Trader
     attr_accessor :user_id,
                   :stock_symbol,
                   :share_quantity,
@@ -52,7 +52,11 @@ module Shares
       return OpenStruct.new(success?: false, message: "stock_symbol can't be nil") unless stock_symbol
       return OpenStruct.new(success?: false, message: "share_quantity can't be nil") unless share_quantity
       return OpenStruct.new(success?: false, message: "transaction_type can't be nil") unless transaction_type
-      return OpenStruct.new(success?: false, message: "stock_symbol '#{stock_symbol}' not found", code: 400) unless valid_stock_symbol?
+
+      unless valid_stock_symbol?
+        return OpenStruct.new(success?: false, message: "stock_symbol '#{stock_symbol}' not found",
+                              code: 400)
+      end
 
       OpenStruct.new(success?: true)
     end
