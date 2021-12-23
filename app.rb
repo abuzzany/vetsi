@@ -32,7 +32,7 @@ namespace '/api/v1' do
 
     return halt 400, { message: response[:message] }.to_json if response[:code] == 400
 
-    response[:transaction].to_json if response[:status] == 'success' && response[:status] == 200
+    response[:payload].to_json if response[:success?]
   end
 
   def request_params
