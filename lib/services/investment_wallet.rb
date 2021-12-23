@@ -18,15 +18,17 @@ class InvestmentWallet
 
     return result unless result.success?
 
-    response = {
-      user_id: user_id,
-      stocks: stocks
-    }
-
-    OpenStruct.new(success?: true, payload: response)
+    OpenStruct.new(success?: true, payload: wallet)
   end
 
   private
+
+  def wallet
+    {
+      user_id: user_id,
+      stocks: stocks
+    }
+  end
 
   def stocks
     Transaction.select(:stock_symbol).where(user_id: user_id).distinct.map do |transaction|
