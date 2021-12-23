@@ -1,15 +1,27 @@
 # frozen_string_literal: true
 
 require './spec/fixtures/transactions/transactions_mock'
+require './spec/fixtures/stubs/nasdaq_api_stub'
 
 RSpec.describe InvestmentWallet do
   include TransactionsMock
+  include NasdaqApiStubs
 
   describe '.call' do
+    before(:each) do
+      allow(HTTParty).to receive(:get).and_return(valid_stock_symbol_response)
+    end
+
     context 'for an existent user' do
       it 'returns its investment wallet' do
         user = User.create(email: 'abuzzany@gmail.com')
 
+        # AAPL buy, 10 * $120 = $1,200
+        # AAPL buy, 4 * $300 = $1200
+        # AAPL sell, 4 * $120 = $480
+        # AAPL = 10 shares
+        # TSLA buy, 5 * $200 = 1,000 shares
+        # Mocked last_sales price $150
         create_transactions(user.id)
 
         result = described_class.for(user.id).call
@@ -18,11 +30,11 @@ RSpec.describe InvestmentWallet do
         expect(result.payload[:user_id]).to be_eql(user.id)
         expect(result.payload[:stocks].count).to be_eql(2)
         expect(result.payload[:stocks][0][:stock_symbol]).to be_eql('AAPL')
-        expect(result.payload[:stocks][0][:profit_loss]).to be_eql(1756.3999999999999)
+        expect(result.payload[:stocks][0][:profit_loss]).to be_eql(-28.0)
         expect(result.payload[:stocks][0][:held_shares]).to be_eql(10)
         expect(result.payload[:stocks][1][:stock_symbol]).to be_eql('TSLA')
-        expect(result.payload[:stocks][1][:profit_loss]).to be_eql(4035.48)
-        expect(result.payload[:stocks][1][:held_shares]).to be_eql(4)
+        expect(result.payload[:stocks][1][:profit_loss]).to be_eql(40.0)
+        expect(result.payload[:stocks][1][:held_shares]).to be_eql(5)
       end
     end
 
