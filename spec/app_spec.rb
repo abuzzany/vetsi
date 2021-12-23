@@ -58,5 +58,29 @@ RSpec.describe 'App' do
         expect(response['total_amount']).to be_eql(1756.3999999999999)
       end
     end
+
+    describe '#users#stocks#sell' do
+      context 'for a valid stock symbol' do
+        it 'returns the detail of the stock share bought' do
+          user = User.create(email: 'abuzzany@gmail.com')
+  
+          params = {
+            stock_symbol: 'AAPL',
+            share_quantity: 10
+          }
+  
+          post "api/v1/users/#{user.id}/stocks/sell", params.to_json
+  
+          response = JSON.parse(last_response.body)
+  
+          expect(last_response).to be_ok
+          expect(response['user_id']).to be_eql(user.id)
+          expect(response['transaction_type']).to be_eql('sell')
+          expect(response['stock_symbol']).to be_eql('AAPL')
+          expect(response['share_quantity']).to be_eql(10)
+          expect(response['total_amount']).to be_eql(1756.3999999999999)
+        end
+      end
+    end
   end
 end

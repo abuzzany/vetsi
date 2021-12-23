@@ -26,9 +26,20 @@ namespace '/api/v1' do
 
   post '/users/:id/stocks/buy' do |id|
     response = Shares::Trader.call(id,
-                                  request_params['stock_symbol'],
-                                  request_params['share_quantity'],
-                                  :buy)
+                                   request_params['stock_symbol'],
+                                   request_params['share_quantity'],
+                                   :buy)
+
+    return halt 400, { message: response[:message] }.to_json if response[:code] == 400
+
+    response[:payload].to_json if response[:success?]
+  end
+
+  post '/users/:id/stocks/sell' do |id|
+    response = Shares::Trader.call(id,
+                                   request_params['stock_symbol'],
+                                   request_params['share_quantity'],
+                                   :sell)
 
     return halt 400, { message: response[:message] }.to_json if response[:code] == 400
 
