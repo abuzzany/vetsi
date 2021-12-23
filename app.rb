@@ -11,9 +11,9 @@ require_relative 'lib/services/investment_wallet'
 require_relative 'lib/nasdaq_client/api'
 require_relative 'lib/services/shares/buyer'
 require_relative 'lib/services/shares/calculate_held_quantity'
-require_relative 'lib/stocks/calculate_profit_loss'
-require_relative 'lib/stocks/info'
-require_relative 'lib/stocks/validator'
+require_relative 'lib/services/stocks/calculate_profit_loss'
+require_relative 'lib/services/stocks/info'
+require_relative 'lib/services/stocks/validator'
 
 namespace '/api/v1' do
   before do
