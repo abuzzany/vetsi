@@ -23,9 +23,8 @@ module Shares
       result = run_checks
 
       return result unless result.success?
-      return commit_transaction if valid_stock_symbol?
 
-      OpenStruct.new(success?: false, code: 400, message: "stock_symbol '#{stock_symbol}' not found")
+      commit_transaction
     end
 
     private
@@ -52,6 +51,7 @@ module Shares
       return OpenStruct.new(success?: false, message: "stock_symbol can't be nil") unless stock_symbol
       return OpenStruct.new(success?: false, message: "share_quantity can't be nil") unless share_quantity
       return OpenStruct.new(success?: false, message: "transaction_type can't be nil") unless transaction_type
+      return OpenStruct.new(success?: false, message: "stock_symbol '#{stock_symbol}' not found", code: 400) unless valid_stock_symbol?
 
       OpenStruct.new(success?: true)
     end
