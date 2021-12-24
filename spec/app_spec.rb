@@ -67,7 +67,7 @@ RSpec.describe 'App' do
 
     describe '#users#stocks#sell' do
       context 'for a valid stock symbol' do
-        it 'returns the detail of the stock share bought' do
+        it 'returns the detail of the stock share sold' do
           user = User.create(email: 'abuzzany@gmail.com')
 
           params = {
