@@ -1,8 +1,16 @@
 # frozen_string_literal: true
+require './spec/fixtures/stubs/nasdaq_api_stub'
 
 RSpec.describe Shares::Trader do
+  include NasdaqApiStubs
+
   describe '.call' do
+
     context 'for an invalid stock symbol' do
+      before(:each) do
+        allow(HTTParty).to receive(:get).and_return(invalid_stock_symbol_response)
+      end
+
       it 'returns an error message' do
         user = User.create(email: 'abuzzany@gmail.com')
 
@@ -12,6 +20,7 @@ RSpec.describe Shares::Trader do
 
         expect(result.success?).to be_falsy
         expect(result.code).to eql(400)
+        expect(result.message).to eql("stock_symbol 'FAKEAPPL' not found")        
       end
     end
 
@@ -42,6 +51,10 @@ RSpec.describe Shares::Trader do
     end
 
     context 'for a valid stock symbol' do
+      before(:each) do
+        allow(HTTParty).to receive(:get).and_return(valid_stock_symbol_response)
+      end
+
       it 'returns the transaction detail for the bought share' do
         user = User.create(email: 'abuzzany@gmail.com')
 
@@ -54,8 +67,8 @@ RSpec.describe Shares::Trader do
         expect(result.payload.transaction_type).to be_eql('buy')
         expect(result.payload.stock_symbol).to be_eql('AAPL')
         expect(result.payload.share_quantity).to be_eql(5)
-        expect(result.payload.share_price).to be_eql(175.64)
-        expect(result.payload.total_amount).to be_eql(878.1999999999999)
+        expect(result.payload.share_price).to be_eql(150.0)
+        expect(result.payload.total_amount).to be_eql(750.0)
       end
     end
   end
