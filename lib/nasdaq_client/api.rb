@@ -2,24 +2,19 @@
 
 require 'httparty'
 
-# This class works as a NASDAQ API client
 module NasdaqClient
-  # This class works as an interface to make request to
+  # This class uses HTTParty gem in order to make request to
   # NASDAQ API.
   class Api
-    attr_reader :stock_symbol
+    BASE_URL = 'https://api.nasdaq.com/api'
 
-    def initialize(stock_symbol)
-      @stock_symbol = stock_symbol
+    attr_accessor :response
+
+    def get(path)
+      HTTParty.get("#{BASE_URL}/#{path}", headers: headers, query: query)
     end
 
-    def call
-      HTTParty.get(
-        "https://api.nasdaq.com/api/quote/#{stock_symbol}/info",
-        headers: headers,
-        query: query
-      )
-    end
+    private
 
     def headers
       # This heades is necessary because nasdaq api

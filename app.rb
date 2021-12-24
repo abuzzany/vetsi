@@ -7,13 +7,14 @@ require 'pry'
 
 require_relative 'models/user'
 require_relative 'models/transaction'
-require_relative 'lib/investment_wallet'
+require_relative 'lib/services/investment_wallet'
 require_relative 'lib/nasdaq_client/api'
-require_relative 'lib/shares/buyer'
-require_relative 'lib/shares/calculate_held_quantity'
-require_relative 'lib/stocks/calculate_profit_loss'
-require_relative 'lib/stocks/info'
-require_relative 'lib/stocks/validator'
+require_relative 'lib/nasdaq_client/quotes'
+require_relative 'lib/nasdaq_client/quote_exception'
+require_relative 'lib/services/shares/trader'
+require_relative 'lib/services/shares/calculate_held_quantity'
+require_relative 'lib/services/stocks/calculate_profit_loss'
+require_relative 'lib/services/stocks/validator'
 
 namespace '/api/v1' do
   before do
@@ -21,18 +22,31 @@ namespace '/api/v1' do
   end
 
   get '/users/:id/wallet' do |id|
-    InvestmentWallet.for(id).call.to_json
+    result = InvestmentWallet.for(id).call
+
+    return result.payload.to_json if result.success?
   end
 
   post '/users/:id/stocks/buy' do |id|
-    response = Shares::Buyer.call(id,
-                                  request_params['stock_symbol'],
-                                  request_params['share_quantity'],
-                                  :buy)
+    response = Shares::Trader.call(id,
+                                   request_params['stock_symbol'],
+                                   request_params['share_quantity'],
+                                   :buy)
 
     return halt 400, { message: response[:message] }.to_json if response[:code] == 400
 
-    response[:transaction].to_json if response[:status] == 'success' && response[:status] == 200
+    response[:payload].to_json if response[:success?]
+  end
+
+  post '/users/:id/stocks/sell' do |id|
+    response = Shares::Trader.call(id,
+                                   request_params['stock_symbol'],
+                                   request_params['share_quantity'],
+                                   :sell)
+
+    return halt 400, { message: response[:message] }.to_json if response[:code] == 400
+
+    response[:payload].to_json if response[:success?]
   end
 
   def request_params

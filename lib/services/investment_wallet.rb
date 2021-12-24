@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# This service rerurnts the investment walltet
-# for a given user.
+# This service returns the investment wallet for a given
+# user.
 class InvestmentWallet
   attr_accessor :user_id
 
@@ -14,12 +14,21 @@ class InvestmentWallet
   end
 
   def call
-    {
-      stocks: stocks
-    }
+    result = run_checks
+
+    return result unless result.success?
+
+    OpenStruct.new(success?: true, payload: wallet)
   end
 
   private
+
+  def wallet
+    {
+      user_id: user_id,
+      stocks: stocks
+    }
+  end
 
   def stocks
     Transaction.select(:stock_symbol).where(user_id: user_id).distinct.map do |transaction|
@@ -34,5 +43,12 @@ class InvestmentWallet
   def calculate_held_shares(user_id, stock_symbol)
     Shares::CalculateHeldQuantity.run(user_id, stock_symbol, :buy) -
       Shares::CalculateHeldQuantity.run(user_id, stock_symbol, :sell)
+  end
+
+  def run_checks
+    return OpenStruct.new(success?: false, message: "user_id can't be nil") unless user_id
+    return OpenStruct.new(success?: false, message: "User doesn't exist") unless User.exists?(user_id)
+
+    OpenStruct.new(success?: true)
   end
 end
