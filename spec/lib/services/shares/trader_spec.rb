@@ -1,11 +1,11 @@
 # frozen_string_literal: true
+
 require './spec/fixtures/stubs/nasdaq_api_stub'
 
 RSpec.describe Shares::Trader do
   include NasdaqApiStubs
 
   describe '.call' do
-
     context 'for an invalid stock symbol' do
       before(:each) do
         allow(HTTParty).to receive(:get).and_return(invalid_stock_symbol_response)
@@ -20,7 +20,7 @@ RSpec.describe Shares::Trader do
 
         expect(result.success?).to be_falsy
         expect(result.code).to eql(400)
-        expect(result.message).to eql("stock_symbol 'FAKEAPPL' not found")        
+        expect(result.message).to eql("stock_symbol 'FAKEAPPL' not found")
       end
     end
 

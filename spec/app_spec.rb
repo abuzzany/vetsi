@@ -17,7 +17,6 @@ RSpec.describe 'App' do
     allow(HTTParty).to receive(:get).and_return(valid_stock_symbol_response)
   end
 
-
   describe '#users#wallet' do
     context 'for an existing user' do
       it 'returns the detail of the stock bought' do
@@ -28,7 +27,7 @@ RSpec.describe 'App' do
         get "api/v1/users/#{user.id}/wallet"
 
         response = JSON.parse(last_response.body)
-        
+
         expect(last_response).to be_ok
         expect(response['user_id']).to be_eql(user.id.to_s)
         expect(response['stocks'].count).to be_eql(2)
