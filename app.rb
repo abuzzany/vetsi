@@ -23,7 +23,9 @@ namespace '/api/v1' do
   get '/users/:id/wallet' do |id|
     result = InvestmentWallet.for(id).call
 
-    return result.payload.to_json if result.success?
+    return halt 400, { message: result[:message] }.to_json if result[:code] == 400
+
+    result.payload.to_json if result.success?
   end
 
   post '/users/:id/stocks/buy' do |id|
