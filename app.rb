@@ -12,7 +12,7 @@ require_relative 'lib/nasdaq_client/api'
 require_relative 'lib/nasdaq_client/quotes'
 require_relative 'lib/nasdaq_client/quote_exception'
 require_relative 'lib/services/shares/trader'
-require_relative 'lib/services/stocks/calculate_profit_loss'
+require_relative 'lib/services/stocks/calculate_value'
 require_relative 'lib/services/stocks/validator'
 
 namespace '/api/v1' do

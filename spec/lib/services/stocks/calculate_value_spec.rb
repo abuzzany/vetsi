@@ -3,7 +3,7 @@
 require './spec/fixtures/transactions/transactions_mock'
 require './spec/fixtures/stubs/nasdaq_api_stub'
 
-RSpec.describe Stocks::CalculateProfitLoss do
+RSpec.describe Stocks::CalculateValue do
   include TransactionsMock
   include NasdaqApiStubs
 
@@ -24,9 +24,9 @@ RSpec.describe Stocks::CalculateProfitLoss do
         # Mocked last_sales price $150
         create_transactions(user.id)
 
-        result = described_class.run(user.id, :AAPL)
+        result = described_class.for(user.id, :AAPL)
 
-        expect(result).to be_eql(-28.0)
+        expect(result.profit_loss).to be_eql(-28.0)
       end
     end
 
@@ -42,9 +42,9 @@ RSpec.describe Stocks::CalculateProfitLoss do
         # Mocked last_sales price $150
         create_transactions(user.id)
 
-        result = described_class.run(user.id, :TSLA)
+        result = described_class.for(user.id, :TSLA)
 
-        expect(result).to be_eql(40.0)
+        expect(result.profit_loss).to be_eql(40.0)
       end
     end
   end
