@@ -35,7 +35,8 @@ class InvestmentWallet
       {
         stock_symbol: transaction.stock_symbol,
         profit_loss: Stocks::CalculateProfitLoss.run(user_id, transaction.stock_symbol),
-        held_shares: calculate_held_shares(user_id, transaction.stock_symbol)
+        held_shares: calculate_held_shares(user_id, transaction.stock_symbol),
+        current_stock_value: Stocks::CalculateCurrentStockValue.run(user_id, transaction.stock_symbol)
       }
     end
   end

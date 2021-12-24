@@ -32,9 +32,11 @@ RSpec.describe InvestmentWallet do
         expect(result.payload[:stocks][0][:stock_symbol]).to be_eql('AAPL')
         expect(result.payload[:stocks][0][:profit_loss]).to be_eql(-28.0)
         expect(result.payload[:stocks][0][:held_shares]).to be_eql(10)
+        expect(result.payload[:stocks][0][:current_stock_value]).to be_eql(1500.0)
         expect(result.payload[:stocks][1][:stock_symbol]).to be_eql('TSLA')
         expect(result.payload[:stocks][1][:profit_loss]).to be_eql(40.0)
         expect(result.payload[:stocks][1][:held_shares]).to be_eql(5)
+        expect(result.payload[:stocks][1][:current_stock_value]).to be_eql(750.0)
       end
     end
 
