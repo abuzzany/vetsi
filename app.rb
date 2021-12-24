@@ -22,7 +22,9 @@ namespace '/api/v1' do
   end
 
   get '/users/:id/wallet' do |id|
-    InvestmentWallet.for(id).call.to_json
+    result = InvestmentWallet.for(id).call
+
+    return result.payload.to_json if result.success?
   end
 
   post '/users/:id/stocks/buy' do |id|
