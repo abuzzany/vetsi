@@ -29,16 +29,7 @@ module Stocks
     end
 
     def current_stock_value
-      total_shares = bought_shares - sold_shares
-      total_shares * last_sale_price
-    end
-
-    def bought_shares
-      @bought_shares ||= Shares::CalculateHeldQuantity.run(user_id, stock_symbol, :buy)
-    end
-
-    def sold_shares
-      @sold_shares ||= Shares::CalculateHeldQuantity.run(user_id, stock_symbol, :sell)
+      Stocks::CalculateCurrentStockValue.run(user_id, stock_symbol)
     end
 
     def bought_shares_value
