@@ -47,5 +47,17 @@ RSpec.describe Stocks::CalculateValue do
         expect(result.profit_loss).to be_eql(40.0)
       end
     end
+
+    context 'for a valid user stock' do
+      it 'calculates its current value' do
+        user = User.create(email: 'abuzzany@gmail.com')
+
+        create_transactions(user.id)
+
+        result = described_class.for(user.id, :TSLA)
+
+        expect(result.current_value).to be_eql(750.0)
+      end
+    end
   end
 end
