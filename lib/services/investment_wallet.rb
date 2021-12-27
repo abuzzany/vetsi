@@ -37,7 +37,9 @@ class InvestmentWallet
         stock_symbol: transaction.stock_symbol,
         held_shares: stock_value.bought_shares_quantity - stock_value.sold_shares_quantity,
         current_stock_value: stock_value.current_value,
-        profit_loss: stock_value.profit_loss
+        profit_loss: stock_value.profit_loss,
+        lowest_price: stock_value.lowest_price,
+        highest_pice: stock_value.highest_pice
       }
     end
   end
