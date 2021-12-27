@@ -7,6 +7,7 @@ require 'pry'
 
 require_relative 'models/user'
 require_relative 'models/transaction'
+require_relative 'models/stock_price_log'
 require_relative 'lib/services/investment_wallet'
 require_relative 'lib/nasdaq_client/api'
 require_relative 'lib/nasdaq_client/quotes'
