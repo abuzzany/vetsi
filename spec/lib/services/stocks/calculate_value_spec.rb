@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 require './spec/fixtures/transactions/transactions_mock'
+require './spec/fixtures/stock_price_logs/stock_price_logs_mock'
 require './spec/fixtures/stubs/nasdaq_api_stub'
 
 RSpec.describe Stocks::CalculateValue do
   include TransactionsMock
+  include StockPriceLogsMock
   include NasdaqApiStubs
 
   describe '.run' do
@@ -57,6 +59,38 @@ RSpec.describe Stocks::CalculateValue do
         result = described_class.for(user.id, :TSLA)
 
         expect(result.current_value).to be_eql(750.0)
+      end
+
+      it 'calculates its lowest price' do
+        user = User.create(email: 'abuzzany@gmail.com')
+
+        create_transactions(user.id)
+        create_stock_price_logs
+
+        lowest_price = StockPriceLog.where(
+          stock_symbol: :AAPL,
+          created_at: Date.current.beginning_of_day..Date.current.end_of_day
+        ).minimum(:price)
+
+        result = described_class.for(user.id, :AAPL)
+
+        expect(result.lowest_price).to be_eql(lowest_price)
+      end
+
+      it 'calculates its highest price' do
+        user = User.create(email: 'abuzzany@gmail.com')
+
+        create_transactions(user.id)
+        create_stock_price_logs
+
+        maximum_price = StockPriceLog.where(
+          stock_symbol: :AAPL,
+          created_at: Date.current.beginning_of_day..Date.current.end_of_day
+        ).maximum(:price)
+
+        result = described_class.for(user.id, :AAPL)
+
+        expect(result.highest_pice).to be_eql(maximum_price)
       end
     end
   end
