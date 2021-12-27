@@ -39,7 +39,7 @@ class InvestmentWallet
         current_stock_value: stock_value.current_value,
         profit_loss: stock_value.profit_loss,
         lowest_price: stock_value.lowest_price,
-        highest_pice: stock_value.highest_pice
+        highest_price: stock_value.highest_pice
       }
     end
   end
