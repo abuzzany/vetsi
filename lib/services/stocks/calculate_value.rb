@@ -43,6 +43,20 @@ module Stocks
       @sold_shares_quantity ||= perform_sum(:sell, :share_quantity)
     end
 
+    def lowest_price
+      StockPriceLog.where(
+        stock_symbol: stock_symbol,
+        created_at: Date.current.beginning_of_day..Date.current.end_of_day
+      ).minimum(:price)
+    end
+
+    def highest_pice
+      StockPriceLog.where(
+        stock_symbol: stock_symbol,
+        created_at: Date.current.beginning_of_day..Date.current.end_of_day
+      ).maximum(:price)
+    end
+
     private
 
     def bought_stock_value
