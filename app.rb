@@ -7,13 +7,13 @@ require 'pry'
 
 require_relative 'models/user'
 require_relative 'models/transaction'
+require_relative 'models/stock_price_log'
 require_relative 'lib/services/investment_wallet'
 require_relative 'lib/nasdaq_client/api'
 require_relative 'lib/nasdaq_client/quotes'
 require_relative 'lib/nasdaq_client/quote_exception'
 require_relative 'lib/services/shares/trader'
-require_relative 'lib/services/shares/calculate_held_quantity'
-require_relative 'lib/services/stocks/calculate_profit_loss'
+require_relative 'lib/services/stocks/calculate_value'
 require_relative 'lib/services/stocks/validator'
 
 namespace '/api/v1' do
@@ -24,7 +24,9 @@ namespace '/api/v1' do
   get '/users/:id/wallet' do |id|
     result = InvestmentWallet.for(id).call
 
-    return result.payload.to_json if result.success?
+    return halt 400, { message: result[:message] }.to_json if result[:code] == 400
+
+    result.payload.to_json if result.success?
   end
 
   post '/users/:id/stocks/buy' do |id|
