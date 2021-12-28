@@ -14,42 +14,42 @@ RSpec.describe InvestmentWallet do
       StockPriceLog.where(
         stock_symbol: :AAPL,
         created_at: Date.current.beginning_of_day..Date.current.end_of_day
-      ).minimum(:price).to_f
+      ).minimum(:price).to_f.truncate(4)
     end
 
     let(:aapl_highest_price) do
       StockPriceLog.where(
         stock_symbol: :AAPL,
         created_at: Date.current.beginning_of_day..Date.current.end_of_day
-      ).maximum(:price).to_f
+      ).maximum(:price).to_f.truncate(4)
     end
 
     let(:aapl_average_price) do
       StockPriceLog.where(
         stock_symbol: :AAPL,
         created_at: Date.current.beginning_of_day..Date.current.end_of_day
-      ).average(:price).to_f
+      ).average(:price).to_f.truncate(4)
     end
 
     let(:tsla_lowest_price) do
       StockPriceLog.where(
         stock_symbol: :TSLA,
         created_at: Date.current.beginning_of_day..Date.current.end_of_day
-      ).minimum(:price).to_f
+      ).minimum(:price).to_f.truncate(4)
     end
 
     let(:tsla_highest_price) do
       StockPriceLog.where(
         stock_symbol: :TSLA,
         created_at: Date.current.beginning_of_day..Date.current.end_of_day
-      ).maximum(:price).to_f
+      ).maximum(:price).to_f.truncate(4)
     end
 
     let(:tsla_average_price) do
       StockPriceLog.where(
         stock_symbol: :TSLA,
         created_at: Date.current.beginning_of_day..Date.current.end_of_day
-      ).average(:price).to_f
+      ).average(:price).to_f.truncate(4)
     end
 
     before(:each) do
