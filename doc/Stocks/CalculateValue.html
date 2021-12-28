@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Stocks::CalculateValue - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+<div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  <p class="link"><a href="../Object.html">Object</a>
+</div>
+
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-c-for">::for</a>
+    <li ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-i-average_price">#average_price</a>
+    <li ><a href="#method-i-bought_shares_amount">#bought_shares_amount</a>
+    <li ><a href="#method-i-bought_shares_quantity">#bought_shares_quantity</a>
+    <li ><a href="#method-i-current_value">#current_value</a>
+    <li ><a href="#method-i-highest_price">#highest_price</a>
+    <li ><a href="#method-i-lowest_price">#lowest_price</a>
+    <li ><a href="#method-i-profit_loss">#profit_loss</a>
+    <li ><a href="#method-i-sold_shares_amount">#sold_shares_amount</a>
+    <li ><a href="#method-i-sold_shares_quantity">#sold_shares_quantity</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Stocks::CalculateValue">
+  <h1 id="class-Stocks::CalculateValue" class="class">
+    class Stocks::CalculateValue
+  </h1>
+
+  <section class="description">
+    
+<p>This service calculates the value of a user stock, for example the profit or loss of a stock, the current value etc.</p>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      <div id="attribute-i-last_sale_price" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">last_sale_price</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        </div>
+      </div>
+      <div id="attribute-i-stock_symbol" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">stock_symbol</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        </div>
+      </div>
+      <div id="attribute-i-user_id" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">user_id</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        </div>
+      </div>
+    </section>
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-for" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">for</span><span
+            class="method-args">(user_id, stock_symbol)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="for-source">
+            <pre><span class="ruby-comment"># File app/services/stocks/calculate_value.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-keyword">for</span>(<span class="ruby-identifier ruby-title">user_id</span>, <span class="ruby-identifier">stock_symbol</span>)
+  <span class="ruby-identifier">new</span>(<span class="ruby-identifier">user_id</span>, <span class="ruby-identifier">stock_symbol</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-new" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(user_id, stock_symbol)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/services/stocks/calculate_value.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">user_id</span>, <span class="ruby-identifier">stock_symbol</span>)
+  <span class="ruby-ivar">@user_id</span> = <span class="ruby-identifier">user_id</span>
+  <span class="ruby-ivar">@stock_symbol</span> = <span class="ruby-identifier">stock_symbol</span>
+  <span class="ruby-ivar">@last_sale_price</span> = <span class="ruby-constant">NasdaqClient</span><span class="ruby-operator">::</span><span class="ruby-constant">Quotes</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">stock_symbol</span>).<span class="ruby-identifier">last_sale_price</span>
+  <span class="ruby-ivar">@today_range</span> = <span class="ruby-constant">Date</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">beginning_of_day</span><span class="ruby-operator">..</span><span class="ruby-constant">Date</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">end_of_day</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-average_price" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">average_price</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="average_price-source">
+            <pre><span class="ruby-comment"># File app/services/stocks/calculate_value.rb, line 63</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">average_price</span>
+  <span class="ruby-ivar">@average_price</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">perfom_stock_operation</span>(<span class="ruby-value">:average</span>, <span class="ruby-value">:price</span>, <span class="ruby-value">created_at:</span> <span class="ruby-identifier">today_range</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-bought_shares_amount" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">bought_shares_amount</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="bought_shares_amount-source">
+            <pre><span class="ruby-comment"># File app/services/stocks/calculate_value.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">bought_shares_amount</span>
+  <span class="ruby-identifier">params</span> = { <span class="ruby-value">user_id:</span> <span class="ruby-identifier">user_id</span>, <span class="ruby-value">transaction_type:</span> <span class="ruby-value">:buy</span> }
+
+  <span class="ruby-ivar">@bought_shares_amount</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">perform_transaction_operarion</span>(<span class="ruby-value">:sum</span>, <span class="ruby-value">:total_amount</span>, <span class="ruby-identifier">params</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-bought_shares_quantity" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">bought_shares_quantity</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="bought_shares_quantity-source">
+            <pre><span class="ruby-comment"># File app/services/stocks/calculate_value.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">bought_shares_quantity</span>
+  <span class="ruby-identifier">params</span> = { <span class="ruby-value">user_id:</span> <span class="ruby-identifier">user_id</span>, <span class="ruby-value">transaction_type:</span> <span class="ruby-value">:buy</span> }
+
+  <span class="ruby-ivar">@bought_shares_quantity</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">perform_transaction_operarion</span>(<span class="ruby-value">:sum</span>, <span class="ruby-value">:share_quantity</span>, <span class="ruby-identifier">params</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-current_value" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">current_value</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="current_value-source">
+            <pre><span class="ruby-comment"># File app/services/stocks/calculate_value.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">current_value</span>
+  <span class="ruby-identifier">total_shares</span> = <span class="ruby-identifier">bought_shares_quantity</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">sold_shares_quantity</span>
+  <span class="ruby-identifier">total_shares</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">last_sale_price</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-highest_price" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">highest_price</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="highest_price-source">
+            <pre><span class="ruby-comment"># File app/services/stocks/calculate_value.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">highest_price</span>
+  <span class="ruby-ivar">@highest_price</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">perfom_stock_operation</span>(<span class="ruby-value">:maximum</span>, <span class="ruby-value">:price</span>, <span class="ruby-value">created_at:</span> <span class="ruby-identifier">today_range</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-lowest_price" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">lowest_price</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="lowest_price-source">
+            <pre><span class="ruby-comment"># File app/services/stocks/calculate_value.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">lowest_price</span>
+  <span class="ruby-ivar">@lowest_price</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">perfom_stock_operation</span>(<span class="ruby-value">:minimum</span>, <span class="ruby-value">:price</span>, <span class="ruby-value">created_at:</span> <span class="ruby-identifier">today_range</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-profit_loss" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">profit_loss</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="profit_loss-source">
+            <pre><span class="ruby-comment"># File app/services/stocks/calculate_value.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">profit_loss</span>
+  (((<span class="ruby-identifier">current_value</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">bought_stock_value</span>) <span class="ruby-operator">/</span> <span class="ruby-identifier">current_value</span>) <span class="ruby-operator">*</span> <span class="ruby-value">100</span>).<span class="ruby-identifier">round</span>(<span class="ruby-value">2</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-sold_shares_amount" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">sold_shares_amount</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="sold_shares_amount-source">
+            <pre><span class="ruby-comment"># File app/services/stocks/calculate_value.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sold_shares_amount</span>
+  <span class="ruby-identifier">params</span> = { <span class="ruby-value">user_id:</span> <span class="ruby-identifier">user_id</span>, <span class="ruby-value">transaction_type:</span> <span class="ruby-value">:sell</span> }
+
+  <span class="ruby-ivar">@sold_shares_amount</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">perform_transaction_operarion</span>(<span class="ruby-value">:sum</span>, <span class="ruby-value">:total_amount</span>, <span class="ruby-identifier">params</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-sold_shares_quantity" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">sold_shares_quantity</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="sold_shares_quantity-source">
+            <pre><span class="ruby-comment"># File app/services/stocks/calculate_value.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sold_shares_quantity</span>
+  <span class="ruby-identifier">params</span> = { <span class="ruby-value">user_id:</span> <span class="ruby-identifier">user_id</span>, <span class="ruby-value">transaction_type:</span> <span class="ruby-value">:sell</span> }
+
+  <span class="ruby-ivar">@sold_shares_quantity</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">perform_transaction_operarion</span>(<span class="ruby-value">:sum</span>, <span class="ruby-value">:share_quantity</span>, <span class="ruby-identifier">params</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.4.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -13,6 +13,9 @@ test: ## Run test suite (Rspec).
 rubocop: ## Run linter (Rubocop).
 	bundle exec rubocop
 
+docs: ## Generate documentation (Rdoc).
+	bundle exec rdoc
+
 dkr-setup: ## Build vetsi app on Docker.
 	docker build -t vetsi-app:v1 .
 

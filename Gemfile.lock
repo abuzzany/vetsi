@@ -38,6 +38,8 @@ GEM
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    psych (4.0.3)
+      stringio
     rack (2.2.3)
     rack-protection (2.1.0)
       rack
@@ -45,6 +47,8 @@ GEM
       rack (>= 1.0, < 3)
     rainbow (3.0.0)
     rake (13.0.6)
+    rdoc (6.4.0)
+      psych (>= 4.0.0)
     regexp_parser (2.2.0)
     rexml (3.2.5)
     rspec (3.10.0)
@@ -90,6 +94,7 @@ GEM
     sinatra-namespace (1.0)
       sinatra-contrib
     sqlite3 (1.4.2)
+    stringio (3.0.1)
     thin (1.8.1)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -108,6 +113,7 @@ DEPENDENCIES
   pry
   rack-test
   rake
+  rdoc
   rspec
   rubocop
   sinatra

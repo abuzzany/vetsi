@@ -16,6 +16,7 @@ module Stocks
       @user_id = user_id
       @stock_symbol = stock_symbol
       @last_sale_price = NasdaqClient::Quotes.new(stock_symbol).last_sale_price
+      @today_range = Date.current.beginning_of_day..Date.current.end_of_day
     end
 
     def current_value
@@ -28,47 +29,63 @@ module Stocks
     end
 
     def bought_shares_amount
-      @bought_shares_amount ||= perform_sum(:buy, :total_amount)
+      params = { user_id: user_id, transaction_type: :buy }
+
+      @bought_shares_amount ||= perform_transaction_operarion(:sum, :total_amount, params)
     end
 
     def sold_shares_amount
-      @sold_shares_amount ||= perform_sum(:sell, :total_amount)
+      params = { user_id: user_id, transaction_type: :sell }
+
+      @sold_shares_amount ||= perform_transaction_operarion(:sum, :total_amount, params)
     end
 
     def bought_shares_quantity
-      @bought_shares_quantity ||= perform_sum(:buy, :share_quantity)
+      params = { user_id: user_id, transaction_type: :buy }
+
+      @bought_shares_quantity ||= perform_transaction_operarion(:sum, :share_quantity, params)
     end
 
     def sold_shares_quantity
-      @sold_shares_quantity ||= perform_sum(:sell, :share_quantity)
+      params = { user_id: user_id, transaction_type: :sell }
+
+      @sold_shares_quantity ||= perform_transaction_operarion(:sum, :share_quantity, params)
     end
 
     def lowest_price
-      StockPriceLog.where(
-        stock_symbol: stock_symbol,
-        created_at: Date.current.beginning_of_day..Date.current.end_of_day
-      ).minimum(:price)
+      @lowest_price ||= perfom_stock_operation(:minimum, :price, created_at: today_range)
     end
 
-    def highest_pice
-      StockPriceLog.where(
-        stock_symbol: stock_symbol,
-        created_at: Date.current.beginning_of_day..Date.current.end_of_day
-      ).maximum(:price)
+    def highest_price
+      @highest_price ||= perfom_stock_operation(:maximum, :price, created_at: today_range)
+    end
+
+    def average_price
+      @average_price ||= perfom_stock_operation(:average, :price, created_at: today_range)
     end
 
     private
+
+    attr_accessor :today_range
 
     def bought_stock_value
       bought_shares_amount - sold_shares_amount
     end
 
-    def perform_sum(transaction_type, field)
-      Transaction.where(
-        user_id: user_id,
-        transaction_type: transaction_type,
+    def perform_transaction_operarion(operation, field, params = {})
+      params = {
         stock_symbol: stock_symbol
-      ).sum(field)
+      }.merge(params)
+
+      Transaction.where(params).send(operation, field).to_f.truncate(4)
+    end
+
+    def perfom_stock_operation(operation, field, params = {})
+      params = {
+        stock_symbol: stock_symbol
+      }.merge(params)
+
+      StockPriceLog.where(params).send(operation, field).to_f.truncate(4)
     end
   end
 end

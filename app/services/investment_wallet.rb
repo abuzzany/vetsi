@@ -38,15 +38,22 @@ class InvestmentWallet
         held_shares: stock_value.bought_shares_quantity - stock_value.sold_shares_quantity,
         current_stock_value: stock_value.current_value,
         profit_loss: stock_value.profit_loss,
-        lowest_price: stock_value.lowest_price,
-        highest_price: stock_value.highest_pice
+        current_day_references_price: current_day_references_price(stock_value)
       }
     end
   end
 
-  def run_checks
-    return OpenStruct.new(success?: false, message: "user_id can't be nil") unless user_id
-    return OpenStruct.new(success?: false, message: "User doesn't exist") unless User.exists?(user_id)
+  def current_day_references_price(stock_value)
+    {
+      lowest_price: stock_value.lowest_price,
+      highest_price: stock_value.highest_price,
+      average_price: stock_value.average_price
+    }
+  end
+
+  def run_checks    
+    return OpenStruct.new(success?: false, code: 400, message: "user_id can't be nil") unless user_id
+    return OpenStruct.new(success?: false, code: 400, message: "User doesn't exist") unless User.exists?(user_id)
 
     OpenStruct.new(success?: true)
   end

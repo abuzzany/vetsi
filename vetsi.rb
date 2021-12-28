@@ -19,6 +19,7 @@ require './app/services/trader'
 require './app/services/stocks/calculate_value'
 require './app/services/stocks/validator'
 
+# This class works as the entroypoint of Vetsi.
 class Vetsi < Sinatra::Base
   use ApplicationController
   use UsersController

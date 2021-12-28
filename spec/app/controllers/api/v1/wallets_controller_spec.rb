@@ -19,28 +19,42 @@ RSpec.describe 'Api/v1/users/wallets' do
     StockPriceLog.where(
       stock_symbol: :AAPL,
       created_at: Date.current.beginning_of_day..Date.current.end_of_day
-    ).minimum(:price)
+    ).minimum(:price).to_f.truncate(4)
   end
 
   let(:aapl_highest_price) do
     StockPriceLog.where(
       stock_symbol: :AAPL,
       created_at: Date.current.beginning_of_day..Date.current.end_of_day
-    ).maximum(:price)
+    ).maximum(:price).to_f.truncate(4)
+  end
+
+  let(:aapl_average_price) do
+    StockPriceLog.where(
+      stock_symbol: :AAPL,
+      created_at: Date.current.beginning_of_day..Date.current.end_of_day
+    ).average(:price).to_f.truncate(4)
   end
 
   let(:tsla_lowest_price) do
     StockPriceLog.where(
       stock_symbol: :TSLA,
       created_at: Date.current.beginning_of_day..Date.current.end_of_day
-    ).minimum(:price)
+    ).minimum(:price).to_f.truncate(4)
   end
 
   let(:tsla_highest_price) do
     StockPriceLog.where(
       stock_symbol: :TSLA,
       created_at: Date.current.beginning_of_day..Date.current.end_of_day
-    ).maximum(:price)
+    ).maximum(:price).to_f.truncate(4)
+  end
+
+  let(:tsla_average_price) do
+    StockPriceLog.where(
+      stock_symbol: :TSLA,
+      created_at: Date.current.beginning_of_day..Date.current.end_of_day
+    ).average(:price).to_f.truncate(4)
   end
 
   before(:each) do
@@ -66,16 +80,18 @@ RSpec.describe 'Api/v1/users/wallets' do
         expect(response['stocks'].count).to be_eql(2)
         expect(response['stocks'][0]['stock_symbol']).to be_eql('AAPL')
         expect(response['stocks'][0]['profit_loss']).to be_eql(-28.0)
-        expect(response['stocks'][0]['held_shares']).to be_eql(10)
+        expect(response['stocks'][0]['held_shares']).to be_eql(10.0)
         expect(response['stocks'][0]['current_stock_value']).to be_eql(1500.0)
-        expect(response['stocks'][0]['lowest_price']).to be_eql(aapl_lowest_price)
-        expect(response['stocks'][0]['highest_price']).to be_eql(aapl_highest_price)
+        expect(response['stocks'][0]['current_day_references_price']['lowest_price']).to be_eql(aapl_lowest_price)
+        expect(response['stocks'][0]['current_day_references_price']['highest_price']).to be_eql(aapl_highest_price)
+        expect(response['stocks'][0]['current_day_references_price']['average_price']).to be_eql(aapl_average_price)
         expect(response['stocks'][1]['stock_symbol']).to be_eql('TSLA')
         expect(response['stocks'][1]['profit_loss']).to be_eql(40.0)
-        expect(response['stocks'][1]['held_shares']).to be_eql(5)
+        expect(response['stocks'][1]['held_shares']).to be_eql(5.0)
         expect(response['stocks'][1]['current_stock_value']).to be_eql(750.0)
-        expect(response['stocks'][1]['lowest_price']).to be_eql(tsla_lowest_price)
-        expect(response['stocks'][1]['highest_price']).to be_eql(tsla_highest_price)
+        expect(response['stocks'][1]['current_day_references_price']['lowest_price']).to be_eql(tsla_lowest_price)
+        expect(response['stocks'][1]['current_day_references_price']['highest_price']).to be_eql(tsla_highest_price)
+        expect(response['stocks'][1]['current_day_references_price']['average_price']).to be_eql(tsla_average_price)
       end
     end
   end

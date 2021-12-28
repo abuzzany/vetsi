@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This is the base controller that contains the common Vetsi
+# mehtods for the children classes.
 class ApplicationController < Sinatra::Base
   before do
     content_type 'application/json'
