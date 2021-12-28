@@ -5,7 +5,7 @@ setup: ## Install dependencies from Gemfile.
 	bundle install
 
 start: ## Start web server locally.
-	ruby app.rb
+	bundle exec rackup --host 0.0.0.0 -p 4567
 
 test: ## Run test suite (Rspec).
 	bundle exec rspec spec/*
