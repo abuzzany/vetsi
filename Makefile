@@ -5,7 +5,7 @@ setup: ## Install dependencies from Gemfile.
 	bundle install
 
 start: ## Start web server locally.
-	ruby app.rb
+	ruby vetsi.rb
 
 test: ## Run test suite (Rspec).
 	bundle exec rspec spec/*
