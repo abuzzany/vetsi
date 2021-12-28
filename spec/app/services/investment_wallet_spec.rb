@@ -16,35 +16,35 @@ RSpec.describe InvestmentWallet do
         created_at: Date.current.beginning_of_day..Date.current.end_of_day
       ).minimum(:price).to_f
     end
-  
+
     let(:aapl_highest_price) do
       StockPriceLog.where(
         stock_symbol: :AAPL,
         created_at: Date.current.beginning_of_day..Date.current.end_of_day
       ).maximum(:price).to_f
     end
-  
+
     let(:aapl_average_price) do
       StockPriceLog.where(
         stock_symbol: :AAPL,
         created_at: Date.current.beginning_of_day..Date.current.end_of_day
       ).average(:price).to_f
     end
-  
+
     let(:tsla_lowest_price) do
       StockPriceLog.where(
         stock_symbol: :TSLA,
         created_at: Date.current.beginning_of_day..Date.current.end_of_day
       ).minimum(:price).to_f
     end
-  
+
     let(:tsla_highest_price) do
       StockPriceLog.where(
         stock_symbol: :TSLA,
         created_at: Date.current.beginning_of_day..Date.current.end_of_day
       ).maximum(:price).to_f
     end
-  
+
     let(:tsla_average_price) do
       StockPriceLog.where(
         stock_symbol: :TSLA,
