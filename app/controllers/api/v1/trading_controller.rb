@@ -2,7 +2,7 @@
 
 class TradingController < ApplicationController
   post '/api/v1/trading' do
-    response = Shares::Trader.call(request_params['user_id'],
+    response = Trader.call(request_params['user_id'],
                                    request_params['stock_symbol'],
                                    request_params['share_quantity'],
                                    request_params['transaction_type'])

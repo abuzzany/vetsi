@@ -2,7 +2,7 @@
 
 require './spec/fixtures/stubs/nasdaq_api_stub'
 
-RSpec.describe Shares::Trader do
+RSpec.describe Trader do
   include NasdaqApiStubs
 
   describe '.call' do
