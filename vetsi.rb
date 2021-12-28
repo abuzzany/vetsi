@@ -15,7 +15,7 @@ require './app/services/investment_wallet'
 require './app/services/nasdaq_client/api'
 require './app/services/nasdaq_client/quotes'
 require './app/services/nasdaq_client/quote_exception'
-require './app/services/shares/trader'
+require './app/services/trader'
 require './app/services/stocks/calculate_value'
 require './app/services/stocks/validator'
 
