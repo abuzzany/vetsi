@@ -77,7 +77,7 @@ module Stocks
         stock_symbol: stock_symbol
       }.merge(params)
 
-      Transaction.where(params).send(operation, field).to_f
+      Transaction.where(params).send(operation, field).to_f.truncate(4)
     end
 
     def perfom_stock_operation(operation, field, params = {})
@@ -85,7 +85,7 @@ module Stocks
         stock_symbol: stock_symbol
       }.merge(params)
 
-      StockPriceLog.where(params).send(operation, field).to_f
+      StockPriceLog.where(params).send(operation, field).to_f.truncate(4)
     end
   end
 end
