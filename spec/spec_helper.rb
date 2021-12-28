@@ -17,7 +17,7 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 ENV['RACK_ENV'] = 'test'
 
-require './app'
+require './vetsi'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
