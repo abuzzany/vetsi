@@ -6,6 +6,6 @@ class UsersController < ApplicationController
 
     return user.to_json if user.persisted?
 
-    halt 500, { message: user.errors.full_messages.join(',') }.to_json
+    response_error(user.errors.full_messages.join(','))
   end
 end
