@@ -51,9 +51,9 @@ class InvestmentWallet
     }
   end
 
-  def run_checks
-    return OpenStruct.new(success?: false, message: "user_id can't be nil") unless user_id
-    return OpenStruct.new(success?: false, message: "User doesn't exist") unless User.exists?(user_id)
+  def run_checks    
+    return OpenStruct.new(success?: false, code: 400, message: "user_id can't be nil") unless user_id
+    return OpenStruct.new(success?: false, code: 400, message: "User doesn't exist") unless User.exists?(user_id)
 
     OpenStruct.new(success?: true)
   end
