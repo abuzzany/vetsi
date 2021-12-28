@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This controller works to buy or sell shares
+# for a given user.
 class TradingController < ApplicationController
   post '/api/v1/trading' do
     response = Trader.call(request_params['user_id'],

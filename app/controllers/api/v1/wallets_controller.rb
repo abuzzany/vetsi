@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This contoller works to return the user stock wallet.
 class WalletsController < ApplicationController
   get '/api/v1/users/:id/wallet' do |id|
     result = InvestmentWallet.for(id).call
