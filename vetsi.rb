@@ -6,6 +6,7 @@ require 'pry'
 
 require './controllers/api/v1/application_controller'
 require './controllers/api/v1/users_controller'
+require './controllers/api/v1/wallets_controller'
 
 require_relative 'models/user'
 require_relative 'models/transaction'
@@ -21,6 +22,7 @@ require_relative 'lib/services/stocks/validator'
 class Vetsi < Sinatra::Base
   use ApplicationController
   use UsersController
+  use WalletsController
 
   get '/' do
     'Hello from Vetsi!'
