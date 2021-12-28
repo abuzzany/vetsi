@@ -16,17 +16,35 @@ require_relative 'lib/services/shares/trader'
 require_relative 'lib/services/stocks/calculate_value'
 require_relative 'lib/services/stocks/validator'
 
-namespace '/api/v1' do
+namespace '/api/v1/users' do
   before do
     content_type 'application/json'
   end
 
-  get '/users/:id/wallet' do |id|
+  post do
+    user = User.create(email: request_params['email'])
+
+    return user.to_json if user.persisted?
+
+    halt 500, { message: user.errors.full_messages }.to_json
+  end
+
+  get '/:id/wallet' do |id|
     result = InvestmentWallet.for(id).call
 
     return halt 400, { message: result[:message] }.to_json if result[:code] == 400
 
     result.payload.to_json if result.success?
+  end
+
+  def request_params
+    @request_params ||= JSON.parse(request.body.read)
+  end
+end
+
+namespace '/api/v1' do
+  before do
+    content_type 'application/json'
   end
 
   post '/users/:id/stocks/buy' do |id|

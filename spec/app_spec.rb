@@ -19,6 +19,34 @@ RSpec.describe 'App' do
     allow(HTTParty).to receive(:get).and_return(valid_stock_symbol_response)
   end
 
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'returns the detail of the user created' do
+        params = { email: 'abuzzany@gmail.com' }
+
+        post 'api/v1/users', params.to_json
+
+        response = JSON.parse(last_response.body)
+
+        expect(response['id']).not_to be_nil
+        expect(response['message']).to be_eql('abuzzany@gmail.com')
+      end
+    end
+
+    context 'with invalid params' do
+      it 'returns an error message' do
+        params = { email: nil }
+        
+        post 'api/v1/users', params.to_json
+
+        response = JSON.parse(last_response.body)
+
+        expect(response['id']).not_to be_nil
+        expect(response['email']).to be_eql('abuzzany@gmail.com')
+      end
+    end
+  end
+
   describe '#users#wallet' do
     context 'for an existing user' do
       it 'returns the detail of the stock bought' do
