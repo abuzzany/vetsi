@@ -28,7 +28,7 @@ blocks:
           commands:
             - checkout
             - cache restore
-            - bundle exec rubocpo
+            - bundle exec rubocop
             - cache store
   - name: Run tests 🧪
     task:
