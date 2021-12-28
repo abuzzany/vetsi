@@ -26,10 +26,12 @@ RSpec.describe 'App' do
 
         post 'api/v1/users', params.to_json
 
+        expect(last_response).to be_ok
+        
         response = JSON.parse(last_response.body)
 
         expect(response['id']).not_to be_nil
-        expect(response['message']).to be_eql('abuzzany@gmail.com')
+        expect(response['email']).to be_eql('abuzzany@gmail.com')
       end
     end
 
@@ -39,10 +41,11 @@ RSpec.describe 'App' do
         
         post 'api/v1/users', params.to_json
 
+        expect(last_response).to_not be_ok
+  
         response = JSON.parse(last_response.body)
-
-        expect(response['id']).not_to be_nil
-        expect(response['email']).to be_eql('abuzzany@gmail.com')
+        
+        expect(response['message']).to be_eql("Email can't be blank")
       end
     end
   end

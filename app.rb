@@ -26,7 +26,7 @@ namespace '/api/v1/users' do
 
     return user.to_json if user.persisted?
 
-    halt 500, { message: user.errors.full_messages }.to_json
+    halt 500, { message: user.errors.full_messages.join(',') }.to_json
   end
 
   get '/:id/wallet' do |id|
