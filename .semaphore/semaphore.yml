@@ -1,13 +1,44 @@
 version: v1.0
-name: Initial Pipeline
+name: Vetsi CI/CD pipeline
 agent:
   machine:
     type: e1-standard-2
-    os_image: ubuntu2004
+    os_image: ubuntu1804
+
 blocks:
-  - name: 'Block #1'
+  - name: Install dependencies ⬇️
     task:
+      prologue:
+        commands:
+          - sem-version ruby 3.0.2 -f
       jobs:
-        - name: 'Job #1'
+        - name: bundle install
           commands:
             - checkout
+            - cache restore
+            - bundle install
+            - cache store
+  - name: Code analysis 🔎
+    task:
+      prologue:
+        commands:
+          - sem-version ruby 3.0.2 -f
+      jobs:
+        - name: bundle exec rubocop
+          commands:
+            - checkout
+            - cache restore
+            - bundle exec rubocpo
+            - cache store
+  - name: Run tests 🧪
+    task:
+      prologue:
+        commands:
+          - sem-version ruby 3.0.2 -f
+      jobs:
+        - name: bundle exec rspec
+          commands:
+            - checkout
+            - cache restore
+            - bundle exec rspec
+            - cache store
