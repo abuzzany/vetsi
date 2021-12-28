@@ -10,6 +10,48 @@ RSpec.describe InvestmentWallet do
   include NasdaqApiStubs
 
   describe '.call' do
+    let(:aapl_lowest_price) do
+      StockPriceLog.where(
+        stock_symbol: :AAPL,
+        created_at: Date.current.beginning_of_day..Date.current.end_of_day
+      ).minimum(:price).to_f
+    end
+  
+    let(:aapl_highest_price) do
+      StockPriceLog.where(
+        stock_symbol: :AAPL,
+        created_at: Date.current.beginning_of_day..Date.current.end_of_day
+      ).maximum(:price).to_f
+    end
+  
+    let(:aapl_average_price) do
+      StockPriceLog.where(
+        stock_symbol: :AAPL,
+        created_at: Date.current.beginning_of_day..Date.current.end_of_day
+      ).average(:price).to_f
+    end
+  
+    let(:tsla_lowest_price) do
+      StockPriceLog.where(
+        stock_symbol: :TSLA,
+        created_at: Date.current.beginning_of_day..Date.current.end_of_day
+      ).minimum(:price).to_f
+    end
+  
+    let(:tsla_highest_price) do
+      StockPriceLog.where(
+        stock_symbol: :TSLA,
+        created_at: Date.current.beginning_of_day..Date.current.end_of_day
+      ).maximum(:price).to_f
+    end
+  
+    let(:tsla_average_price) do
+      StockPriceLog.where(
+        stock_symbol: :TSLA,
+        created_at: Date.current.beginning_of_day..Date.current.end_of_day
+      ).average(:price).to_f
+    end
+
     before(:each) do
       allow(HTTParty).to receive(:get).and_return(valid_stock_symbol_response)
     end
@@ -27,26 +69,6 @@ RSpec.describe InvestmentWallet do
         create_transactions(user.id)
         create_stock_price_logs
 
-        aapl_lowest_price = StockPriceLog.where(
-          stock_symbol: :AAPL,
-          created_at: Date.current.beginning_of_day..Date.current.end_of_day
-        ).minimum(:price)
-
-        aapl_highest_price = StockPriceLog.where(
-          stock_symbol: :AAPL,
-          created_at: Date.current.beginning_of_day..Date.current.end_of_day
-        ).maximum(:price)
-
-        tsla_lowest_price = StockPriceLog.where(
-          stock_symbol: :TSLA,
-          created_at: Date.current.beginning_of_day..Date.current.end_of_day
-        ).minimum(:price)
-
-        tsla_highst_price = StockPriceLog.where(
-          stock_symbol: :TSLA,
-          created_at: Date.current.beginning_of_day..Date.current.end_of_day
-        ).maximum(:price)
-
         result = described_class.for(user.id).call
 
         expect(result.success?).to be_truthy
@@ -54,16 +76,18 @@ RSpec.describe InvestmentWallet do
         expect(result.payload[:stocks].count).to be_eql(2)
         expect(result.payload[:stocks][0][:stock_symbol]).to be_eql('AAPL')
         expect(result.payload[:stocks][0][:profit_loss]).to be_eql(-28.0)
-        expect(result.payload[:stocks][0][:held_shares]).to be_eql(10)
+        expect(result.payload[:stocks][0][:held_shares]).to be_eql(10.0)
         expect(result.payload[:stocks][0][:current_stock_value]).to be_eql(1500.0)
-        expect(result.payload[:stocks][0][:highest_price]).to be_eql(aapl_highest_price)
-        expect(result.payload[:stocks][0][:lowest_price]).to be_eql(aapl_lowest_price)
+        expect(result.payload[:stocks][0][:current_day_references_price][:highest_price]).to be_eql(aapl_highest_price)
+        expect(result.payload[:stocks][0][:current_day_references_price][:lowest_price]).to be_eql(aapl_lowest_price)
+        expect(result.payload[:stocks][0][:current_day_references_price][:average_price]).to be_eql(aapl_average_price)
         expect(result.payload[:stocks][1][:stock_symbol]).to be_eql('TSLA')
         expect(result.payload[:stocks][1][:profit_loss]).to be_eql(40.0)
-        expect(result.payload[:stocks][1][:held_shares]).to be_eql(5)
+        expect(result.payload[:stocks][1][:held_shares]).to be_eql(5.0)
         expect(result.payload[:stocks][1][:current_stock_value]).to be_eql(750.0)
-        expect(result.payload[:stocks][1][:highest_price]).to be_eql(tsla_highst_price)
-        expect(result.payload[:stocks][1][:lowest_price]).to be_eql(tsla_lowest_price)
+        expect(result.payload[:stocks][1][:current_day_references_price][:highest_price]).to be_eql(tsla_highest_price)
+        expect(result.payload[:stocks][1][:current_day_references_price][:lowest_price]).to be_eql(tsla_lowest_price)
+        expect(result.payload[:stocks][1][:current_day_references_price][:average_price]).to be_eql(tsla_average_price)
       end
     end
 

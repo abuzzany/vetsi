@@ -38,10 +38,17 @@ class InvestmentWallet
         held_shares: stock_value.bought_shares_quantity - stock_value.sold_shares_quantity,
         current_stock_value: stock_value.current_value,
         profit_loss: stock_value.profit_loss,
-        lowest_price: stock_value.lowest_price,
-        highest_price: stock_value.highest_pice
+        current_day_references_price: current_day_references_price(stock_value)
       }
     end
+  end
+
+  def current_day_references_price(stock_value)
+    {
+      lowest_price: stock_value.lowest_price,
+      highest_price: stock_value.highest_price,
+      average_price: stock_value.average_price
+    }
   end
 
   def run_checks

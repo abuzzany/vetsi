@@ -90,7 +90,7 @@ RSpec.describe Stocks::CalculateValue do
 
         result = described_class.for(user.id, :AAPL)
 
-        expect(result.highest_pice).to be_eql(maximum_price)
+        expect(result.highest_price).to be_eql(maximum_price)
       end
     end
   end

@@ -47,14 +47,21 @@ module Stocks
       StockPriceLog.where(
         stock_symbol: stock_symbol,
         created_at: Date.current.beginning_of_day..Date.current.end_of_day
-      ).minimum(:price)
+      ).minimum(:price).to_f
     end
 
-    def highest_pice
+    def highest_price
       StockPriceLog.where(
         stock_symbol: stock_symbol,
         created_at: Date.current.beginning_of_day..Date.current.end_of_day
-      ).maximum(:price)
+      ).maximum(:price).to_f
+    end
+
+    def average_price
+      StockPriceLog.where(
+        stock_symbol: stock_symbol,
+        created_at: Date.current.beginning_of_day..Date.current.end_of_day
+      ).average(:price).to_f
     end
 
     private
@@ -68,7 +75,7 @@ module Stocks
         user_id: user_id,
         transaction_type: transaction_type,
         stock_symbol: stock_symbol
-      ).sum(field)
+      ).sum(field).to_f
     end
   end
 end
