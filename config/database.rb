@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 database_name = "vetsi-#{vetsi.environment}"
 db = URI.parse(ENV['DATABASE_URL'] || "sqlite3://localhost/#{database_name}")
 
