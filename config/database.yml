@@ -10,5 +10,5 @@ test:
  database: vetsi-test
 
 production:
- adapter: sqlite3 
+ adapter: postgresql 
  database: vetsi-production
