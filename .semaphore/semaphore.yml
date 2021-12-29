@@ -23,6 +23,7 @@ blocks:
       prologue:
         commands:
           - sem-version ruby 3.0.2 -f
+          - bundle install
       jobs:
         - name: bundle exec rubocop
           commands:
