@@ -11,11 +11,10 @@ test:
 
 production:
  adapter: postgresql
- encoding: unicode
  pool: 5
- database: <%= ENV['DATABASE_NAME'] %>
- host: <%= ENV['DATABASE_HOST'] %>
- username: <%= ENV['DATABASE_USER'] %>
- password: <%= ENV['DATABASE_PASSWORD'] %>
+ timeout: 5000
+ database: vetsi-production
+ url: <%= ENV['DATABASE_URL'] %>
+
 
 
