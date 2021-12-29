@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require './spec/fixtures/stubs/nasdaq_api_stub'
 
 RSpec.describe Stocks::Validator do
