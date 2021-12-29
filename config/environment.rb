@@ -1,4 +1,4 @@
-require 'sinatra/activerecord'Bundler.require
+require 'sinatra/activerecord'
 
 configure :development, :test do
   set :database, 'sqlite://development.db'
