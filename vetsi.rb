@@ -4,6 +4,8 @@ require 'sinatra/base'
 require 'sinatra/activerecord'
 require 'pry'
 
+require './config/environment'
+
 require './app/controllers/api/v1/application_controller'
 require './app/controllers/api/v1/users_controller'
 require './app/controllers/api/v1/trading_controller'
