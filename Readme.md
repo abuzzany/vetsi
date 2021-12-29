@@ -1,3 +1,4 @@
+[![Build Status](https://abuzzany.semaphoreci.com/badges/vetsi/branches/master.svg)](https://abuzzany.semaphoreci.com/projects/vetsi)
 # Vetsi API 💰 🚀
 ```bash
 ____   ____      __         .__ 
@@ -31,7 +32,7 @@ test                           Run test suite (Rspec).
 Vetsi cuenta con toda la documentción necesaria y ejemplos del uso del API en el siguiente link:
 
 [Documentación en Postman](https://documenter.getpostman.com/view/18868814/UVRGDPWz)
-![Postman Doc](./public/img/postman-doc.png)
+![Postman Doc](./img/postman-doc.png)
 
 También si así lo requieres el código esta documentado, y podras encontras el detalle del uso y funcionamiento de las clases dentro de
 la carpeta `doc`.
@@ -68,7 +69,7 @@ $ make dkr-start
 
 Si el proyecto arranco de manera correcta, deberas de ver el siguiente mensaje en tu navegador:
 
-![Hola mundo](./public/img/hello-world.png)
+![Hola mundo](./img/hello-world.png)
 ## CI/CD
 El pipeline de Continuous integration y Continuous delivery (CI/CD) del proyecto corre sobre SemaphoreCI. El pipeline de CI contempla 4 fases:
 <ol>
@@ -77,7 +78,7 @@ El pipeline de Continuous integration y Continuous delivery (CI/CD) del proyecto
 <li>Run tests</li>
 </ol>
 
-![Semaphore](./public/img/semaphore.png)
+![Semaphore](./img/semaphore.png)
 
 El deploy se hace en Heroku por medio de semaphore.
 
