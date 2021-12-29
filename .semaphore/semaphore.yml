@@ -15,14 +15,18 @@ blocks:
         - name: bundle install
           commands:
             - checkout
-            - bundle install
+            - cache restore
+            - bundle install --deployment --path vendor/bundle
+            - cache store
+
   - name: Code analysis 🔎
     task:
       prologue:
         commands:
           - sem-version ruby 3.0.2 -f
           - checkout
-          - bundle install
+          - cache restore
+          - bundle install --deployment --path vendor/bundle
       jobs:
         - name: bundle exec rubocop
           commands:
