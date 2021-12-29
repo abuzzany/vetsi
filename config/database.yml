@@ -12,3 +12,4 @@ test:
 production:
  adapter: postgresql 
  database: vetsi-production
+ url: <%= ENV["DATABASE_URL"] %>
