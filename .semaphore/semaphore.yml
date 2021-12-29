@@ -16,7 +16,7 @@ blocks:
           commands:
             - checkout
             - cache restore
-            - bundle install --deployment --path vendor/bundle
+            - bundle install
             - cache store
 
   - name: Code analysis 🔎
@@ -26,7 +26,7 @@ blocks:
           - sem-version ruby 3.0.2 -f
           - checkout
           - cache restore
-          - bundle install --deployment --path vendor/bundle
+          - bundle install
       jobs:
         - name: bundle exec rubocop
           commands:
