@@ -42,7 +42,7 @@ Una vez que hayas instalado Ruby 3.0.2 ejecuta el siguiente comando para instala
 ```bash
 $ make setup
 ```
-## Guía Uso
+## Guía de uso
 Para que puedas probar el proyecto en tu local solo ejecuta el siguiente
 comando:
 ```bash
