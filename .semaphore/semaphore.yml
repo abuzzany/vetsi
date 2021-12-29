@@ -39,6 +39,7 @@ blocks:
           - checkout
           - cache restore
           - bundle install
+          - rake db:migrate RACK_ENV="test"
       jobs:
         - name: bundle exec rspec
           commands:
