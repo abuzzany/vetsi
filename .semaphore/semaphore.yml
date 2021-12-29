@@ -36,10 +36,10 @@ blocks:
       prologue:
         commands:
           - sem-version ruby 3.0.2 -f
+          - checkout
+          - cache restore
+          - bundle install
       jobs:
         - name: bundle exec rspec
           commands:
-            - checkout
-            - cache restore
             - bundle exec rspec
-            - cache store
