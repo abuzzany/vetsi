@@ -1,12 +1,17 @@
-# in config/database.yml
- # this defines the database for the development environment (default environment)
 development:
- # the type of database it will be
  adapter: sqlite3 
-  # name of db to make
  database: vetsi-development
 
- # same but for test env
 test:
  adapter: sqlite3
  database: vetsi-test
+
+production:
+ adapter: postgresql
+ pool: 5
+ timeout: 5000
+ database: vetsi-production
+ url: <%= ENV['DATABASE_URL'] %>
+
+
+

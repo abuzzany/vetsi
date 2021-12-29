@@ -1,0 +1,17 @@
+
+version: v1.0
+name: Deploy API
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: 🏁 Deploy
+    task:
+      secrets:
+        - name: heroku-http
+      jobs:
+        - name: Pusto to Heroku
+          commands:
+            - checkout
+            - sh bin/production.sh
