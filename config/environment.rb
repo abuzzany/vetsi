@@ -1,3 +1,6 @@
+require 'bundler/setup'
+Bundler.require
+
 configure :production, :development, :test do
   db = URI.parse(ENV['DATABASE_URL'] || 'postgres://localhost/calendar_development')
 
