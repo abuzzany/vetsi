@@ -10,6 +10,12 @@ test:
  database: vetsi-test
 
 production:
- adapter: postgresql 
- database: vetsi-production
- url: <%= ENV["DATABASE_URL"] %>
+ adapter: postgresql
+ encoding: unicode
+ pool: 5
+ database: <%= ENV['DATABASE_NAME'] %>
+ host: <%= ENV['DATABASE_HOST'] %>
+ username: <%= ENV['DATABASE_USER'] %>
+ password: <%= ENV['DATABASE_PASSWORD'] %>
+
+
