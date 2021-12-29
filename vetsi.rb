@@ -31,6 +31,4 @@ class Vetsi < Sinatra::Base
   get '/' do
     'Hello from Vetsi!'
   end
-
-  # run!
 end
