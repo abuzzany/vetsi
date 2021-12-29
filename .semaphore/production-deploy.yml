@@ -11,7 +11,7 @@ blocks:
       secrets:
         - name: heroku-http
       jobs:
-        - name: Copy to S3
+        - name: Pusto to Heroku
           commands:
             - checkout
             - sh bin/production.sh
