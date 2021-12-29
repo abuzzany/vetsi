@@ -77,7 +77,7 @@ El pipeline de Continuous integration y Continuous delivery (CI/CD) del proyecto
 <li>Run tests</li>
 </ol>
 
-![Semaphore](./public/img/semaphore.png)
+[Semaphore](./public/img/semaphore.png)
 
 El deploy se hace en Heroku por medio de semaphore.
 
