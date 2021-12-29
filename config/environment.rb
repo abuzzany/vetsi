@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # in config/environment.rb
 # get the path of the root of the app
 # assuming that this file is one folder down in config/
