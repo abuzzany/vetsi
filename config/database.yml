@@ -1,10 +1,7 @@
-# in config/database.yml
- # this defines the database for the development environment (default environment)
 development:
  adapter: sqlite3 
  database: vetsi-development
 
- # same but for test env
 test:
  adapter: sqlite3
  database: vetsi-test
