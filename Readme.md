@@ -105,4 +105,4 @@ Dentro de la documentación de postmane encontraras en environment de `productio
 
 ## Licencia
 
-Capculator is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Vetsi is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
