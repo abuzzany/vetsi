@@ -62,5 +62,7 @@ promotions:
     pipeline_file: production-deploy.yml
   - name: Staging deploy 🚀
     pipeline_file: production-deploy.yml
+    auto_promote:
+      when: "result = 'passed'"
   - name: Development deploy 🚀
     pipeline_file: production-deploy.yml
