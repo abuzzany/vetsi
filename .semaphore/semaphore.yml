@@ -48,3 +48,7 @@ blocks:
 promotions:
   - name: Production deploy 🚀
     pipeline_file: production-deploy.yml
+  - name: Staging deploy 🚀
+    pipeline_file: production-deploy.yml
+  - name: Development deploy 🚀
+    pipeline_file: production-deploy.yml
