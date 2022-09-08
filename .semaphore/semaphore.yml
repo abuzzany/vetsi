@@ -25,7 +25,7 @@ blocks:
             - cache restore
             - ruby -v
             - cache store
-            jobs:
+      jobs:
         - name: tarea 3
           commands:
             - checkout
