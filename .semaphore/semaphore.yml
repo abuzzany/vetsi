@@ -18,6 +18,20 @@ blocks:
             - cache restore
             - bundle install
             - cache store
+      jobs:
+        - name: tarea 2
+          commands:
+            - checkout
+            - cache restore
+            - ruby -v
+            - cache store
+            jobs:
+        - name: tarea 3
+          commands:
+            - checkout
+            - cache restore
+            - ruby -v
+            - cache store
 
   - name: Code analysis 🔎
     task:
