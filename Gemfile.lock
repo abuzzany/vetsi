@@ -95,7 +95,7 @@ GEM
     sinatra-namespace (1.0)
       sinatra-contrib
     sqlite3 (1.4.2)
-    stringio (3.0.1)
+    stringio (3.0.1.1)
     thin (1.8.1)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
